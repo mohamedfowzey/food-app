@@ -1,0 +1,69 @@
+:root {
+    --main-foreground: rgba(73, 73, 73, 1);
+    --ternary-foreground: rgba(73, 73, 73, 0.6);
+    --ternary-background: rgba(248, 249, 250, 1);
+    --main-background: rgba(255, 255, 255, 1);
+    --accent-color: rgba(74, 163, 90, 1);
+}
+
+input{
+    caret-color: var(--accent-color);
+    caret-shape:block;
+}
+
+.text-main{
+    color: var(--main-foreground) !important ;
+}
+
+.text-ternary{
+    color: var(--ternary-foreground);
+}
+.text-accent{
+    color: var(--accent-color);
+}
+.bg-main{
+    background-color: var(--main-background);
+}
+.bg-accent{
+    background-color: var(--accent-color);
+}
+.auth-bg{
+    caret-color: transparent;
+    background-image: url('./assets/auth-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+.bg-ternary{
+    background-color: var(--ternary-background);
+}
+.top-4{
+    top: 4px
+}
+.icon-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:100%;
+    padding-right: 4px;
+     border-right: 1px solid var(--ternary-foreground);
+    cursor: pointer;
+}
+.ps-6{
+    padding-left: 60px;
+}
+.btn:hover{
+    background-color: var(--accent-color);
+}
