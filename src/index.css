@@ -10,7 +10,7 @@ input{
     caret-color: var(--accent-color);
     caret-shape:block;
 }
-
+.error-span{font-size: 12px;}
 .text-main{
     color: var(--main-foreground) !important ;
 }

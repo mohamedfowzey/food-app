@@ -6,10 +6,11 @@ import MainButton from "../../Shared/MainButton/MainButton";
 import CustomInput from "../../Shared/CustomInput/CustomInput";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import LoadingElement from "../../Shared/loadingElement/loadingElement";
 
 export default function Login() {
   const navigate = useNavigate();
-  const [loading,setLaoding] = useState(false)
+  const [loading, setLaoding] = useState(false);
   const {
     register,
     handleSubmit,
@@ -17,7 +18,7 @@ export default function Login() {
   } = useForm();
   const onSubmit = async (data) => {
     try {
-          setLaoding(true)
+      setLaoding(true);
 
       const res = await axios.post(
         "https://upskilling-egypt.com:3006/api/v1/Users/Login",
@@ -25,15 +26,12 @@ export default function Login() {
       );
       localStorage.setItem("token", res.data.token);
       navigate("/dashboard");
-          setLaoding(false)
-
+      setLaoding(false);
     } catch (error) {
       toast.error("Error occurred while logging in:", error.message);
 
-          setLaoding(false)
-
+      setLaoding(false);
     }
-
   };
   return (
     <>
@@ -43,38 +41,30 @@ export default function Login() {
       </p>
       <form className="text-main" onSubmit={handleSubmit(onSubmit)}>
         <CustomInput
-        name='email'
+          name={"email"}
           errors={errors}
           type={"email"}
-          register={register("email", { required: "email is required" })}
+          register={register}
         />
         <CustomInput
-        name={'password'}
+          name={"password"}
           errors={errors}
           type={"password"}
-          register={register("password", {
-            required: "password is required",
-            pattern: {
-              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()]).{8,}$/g,
-              message:
-                "password must contains lowercase, uppercase, digit and special character!",
-            },
-          })}
+          register={register}
         />
         <div className="d-flex justify-content-between align-items-center">
-            <Link to="/register" className="text-decoration-none text-main">
-              register?
-            </Link>
-            <Link
-              to="/forget-password"
-              className="text-decoration-none text-accent"
-            >
-              Forgot Password?
-            </Link>
-          </div>
-           {/* <button disabled={loading} className="btn w-100 mb-3 bg-accent text-white">login</button> */}
+          <Link to="/register" className="text-decoration-none text-main">
+            register?
+          </Link>
+          <Link
+            to="/forget-password"
+            className="text-decoration-none text-accent"
+          >
+            Forgot Password?
+          </Link>
+        </div>
 
-       {loading? <p className="text-center text-accent">laoding...</p>:<MainButton >login</MainButton>}
+        {loading ? <LoadingElement /> : <MainButton>login</MainButton>}
       </form>
     </>
   );
