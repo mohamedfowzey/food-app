@@ -16,6 +16,7 @@ import ForgetPass from './Modules/Athentication/ForgetPass/ForgetPass'
 import AddRecipe from './Modules/Dashboard/AddRecipe/AddRecipe'
 import Home from './Modules/Dashboard/Home/Home'
 import ProtectedRoute from './Modules/Shared/Prtected/ProtectedRoute'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   const routes = createBrowserRouter([
@@ -44,7 +45,20 @@ function App() {
     
     ])
   return (
-    <RouterProvider router={routes}></RouterProvider>  )
+   <> <ToastContainer
+position="top-center"
+autoClose={3000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick={false}
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+s
+/>
+    <RouterProvider router={routes}></RouterProvider> </> )
 }
 
 export default App

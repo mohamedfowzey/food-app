@@ -2,11 +2,14 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { LOGIN } from "../../../Constants/END_POINTS";
 import { Link, useNavigate } from "react-router-dom";
+import MainButton from "../../Shared/MainButton/MainButton";
+import CustomInput from "../../Shared/CustomInput/CustomInput";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Login() {
-  const [passVisible, setPassVisible] = useState(false);
   const navigate = useNavigate();
+  const [loading,setLaoding] = useState(false)
   const {
     register,
     handleSubmit,
@@ -14,15 +17,23 @@ export default function Login() {
   } = useForm();
   const onSubmit = async (data) => {
     try {
+          setLaoding(true)
+
       const res = await axios.post(
         "https://upskilling-egypt.com:3006/api/v1/Users/Login",
         data,
       );
       localStorage.setItem("token", res.data.token);
       navigate("/dashboard");
+          setLaoding(false)
+
     } catch (error) {
-      console.log("Error occurred while logging in:", error);
+      toast.error("Error occurred while logging in:", error.message);
+
+          setLaoding(false)
+
     }
+
   };
   return (
     <>
@@ -31,54 +42,26 @@ export default function Login() {
         Welcome Back! Please enter your details
       </p>
       <form className="text-main" onSubmit={handleSubmit(onSubmit)}>
-        <div className="p-1 mb-3 bg-ternary">
-          <div className="position-relative">
-            <div className="position-absolute top-0 start-0 pe-1 icon-container">
-              <i className="fa-regular fa-envelope fs-3"></i>
-            </div>
-            <input
-              type="email"
-              className="form-control bg-ternary ps-5
-            "
-              {...register("email", { required: "Email is required" })}
-              placeholder="E-mail"
-            />
-          </div>
-          {errors.email && (
-            <p className="text-danger text-sm mt-1">{errors.email.message}</p>
-          )}
-        </div>
-        <div className="p-1 mb-3 bg-ternary">
-          <div className="position-relative">
-            <div className="position-absolute top-0 start-0 pe-1 icon-container">
-              <i className="fa-solid fa-key fs-3"></i>{" "}
-            </div>
-            <div
-              onClick={() => setPassVisible(!passVisible)}
-              className="position-absolute z-3  top-0 end-0 pe-1 icon-container"
-            >
-              <i
-                className={
-                  passVisible
-                    ? "fa-regular fa-eye pe-2"
-                    : "fa-regular fa-eye-slash pe-2"
-                }
-              ></i>{" "}
-            </div>
-            <input
-              type={passVisible ? "text" : "password"}
-              className="form-control bg-ternary ps-5
-            "
-              {...register("password", { required: "Password is required" })}
-              placeholder="Password"
-            />
-          </div>
-          {errors.password && (
-            <p className="text-danger text-sm mt-1">
-              {errors.password.message}
-            </p>
-          )}
-          <div className="d-flex justify-content-between align-items-center">
+        <CustomInput
+        name='email'
+          errors={errors}
+          type={"email"}
+          register={register("email", { required: "email is required" })}
+        />
+        <CustomInput
+        name={'password'}
+          errors={errors}
+          type={"password"}
+          register={register("password", {
+            required: "password is required",
+            pattern: {
+              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()]).{8,}$/g,
+              message:
+                "password must contains lowercase, uppercase, digit and special character!",
+            },
+          })}
+        />
+        <div className="d-flex justify-content-between align-items-center">
             <Link to="/register" className="text-decoration-none text-main">
               register?
             </Link>
@@ -89,8 +72,9 @@ export default function Login() {
               Forgot Password?
             </Link>
           </div>
-        </div>
-        <button className="btn w-100 mb-3 bg-accent text-white">Login</button>
+           {/* <button disabled={loading} className="btn w-100 mb-3 bg-accent text-white">login</button> */}
+
+       {loading? <p className="text-center text-accent">laoding...</p>:<MainButton >login</MainButton>}
       </form>
     </>
   );

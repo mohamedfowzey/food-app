@@ -7,12 +7,11 @@ export default function VerifyPass() {
   const { register, handleSubmit, formState: { errors }, } = useForm();
   const {state} = useLocation();
   const navigate = useNavigate();
-  const email = state?.email || '';
   const onSubmit =  async (data) => {  
-    console.log({...data, email:email});
+    console.log({...data, email:state?.email});
     try {
-      await axios.post('https://upskilling-egypt.com:3006/api/v1/Users/verify', {...data, email:email});
-      navigate('/reset-password', {state:{email:email,otp:data.Code}})
+      await axios.post('https://upskilling-egypt.com:3006/api/v1/Users/verify', {...data, email:state?.email});
+      navigate('/reset-password', {state:{email:state?.email,otp:data.Code}})
     } catch (error) {
       console.log(error);
       
