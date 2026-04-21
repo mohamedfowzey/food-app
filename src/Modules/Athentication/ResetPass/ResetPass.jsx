@@ -8,8 +8,6 @@ import CustomInput from '../../Shared/CustomInput/CustomInput';
 
 export default function ResetPass() { 
   const [loading,setLoading] = useState()
-  const [passVisible, setPassVisible] = useState(false);
-  const [confirmPassVisible, setConfirmPassVisible] = useState(false);
     const navigate = useNavigate();
 
   const {
@@ -64,7 +62,13 @@ Please Enter Your Otp  or Check Your Inbox      </p>
           )}
         </div> */}
         <CustomInput type={'text'} name={'otp'} errors={errors} register={register('seed',{required:'code is required',maxLength:{value:4,message:'otp must be 4 chars'},minLength:{value:4,message:'code must be 4 chars'}})}/>
-     <div className="p-1 mb-3 bg-ternary">
+        <CustomInput type={'password'} name={'password'} errors={errors} register={register('password',{required:'password is required',pattern:{
+              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()]).{8,}$/g,
+              message:
+                "password must contains lowercase, uppercase, digit and special character!",
+            }})}/>
+        <CustomInput type={'password'} name={'confirmPassword'} errors={errors} register={register('confirmPassword',{required:'Confirm Password is required',validate: value => value === watch('password') || "Passwords do not match"})}/>
+     {/* <div className="p-1 mb-3 bg-ternary">
           <div className="position-relative">
             <div className="position-absolute top-0 start-0 pe-1 icon-container">
               <i className="fa-solid fa-key fs-3"></i>{" "}
@@ -93,8 +97,8 @@ Please Enter Your Otp  or Check Your Inbox      </p>
             <p className="text-danger text-sm mt-1">
               {errors.password.message}
             </p>
-          )}</div>
-     <div className="p-1 mb-3 bg-ternary">
+          )}</div> */}
+     {/* <div className="p-1 mb-3 bg-ternary">
           <div className="position-relative">
             <div className="position-absolute top-0 start-0 pe-1 icon-container">
               <i className="fa-solid fa-key fs-3"></i>{" "}
@@ -123,7 +127,7 @@ Please Enter Your Otp  or Check Your Inbox      </p>
             <p className="text-danger text-sm mt-1">
               {errors.confirmPassword.message}
             </p>
-          )}</div>
+          )}</div> */}
         {loading?<p className='text-center text-accent'>loading...</p>:<MainButton>submit</MainButton>}
 </form>
 </>  )

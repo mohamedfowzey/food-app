@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 const IconsForInputs = {
-    email:<i className="fa-regular fa-envelope fs-3"></i>,
-    password:<i className="fa-solid fa-key fs-3"></i>,
-    otp:<i className="fa-solid fa-lock"></i> 
+    email:<i className="fa-regular fa-envelope fs-4"></i>,
+    password:<i className="fa-solid fa-key fs-4"></i>,
+    confirmPassword:<i className="fa-solid fa-key fs-4"></i>,
+    otp:<i className="fa-solid fa-lock fs-4"></i> 
     
 }
 export default function CustomInput({type,register,errors,name}) {
@@ -10,18 +11,18 @@ export default function CustomInput({type,register,errors,name}) {
   return (
     <div className="p-1 mb-3 bg-ternary">
           <div className="position-relative">
-            <div className="position-absolute top-0 start-0 pe-1 icon-container">
+            <div className="position-absolute pe-1 icon-container">
                 {IconsForInputs[name]}
             </div>
             {type === 'password' && (<div
               onClick={() => setPassVisible(!passVisible)}
-              className="position-absolute z-3  top-0 end-0 pe-1 icon-container"
+              className="position-absolute z-3 end-icone-container "
             >
               <i
                 className={
                   passVisible
-                    ? "fa-regular fa-eye pe-2"
-                    : "fa-regular fa-eye-slash pe-2"
+                    ? "fa-regular fa-eye "
+                    : "fa-regular fa-eye-slash "
                 }
               ></i>{" "}
             </div>)}
