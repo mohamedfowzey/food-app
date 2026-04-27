@@ -4,11 +4,13 @@ import { LOGIN } from "../../../Constants/END_POINTS";
 import { Link, useNavigate } from "react-router-dom";
 import MainButton from "../../Shared/MainButton/MainButton";
 import CustomInput from "../../Shared/CustomInput/CustomInput";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import LoadingElement from "../../Shared/loadingElement/loadingElement";
+import { ContextFounder } from "../../../contexts/UserConrtrxt";
 
 export default function Login() {
+  const {saveUser} = useContext(ContextFounder);
   const navigate = useNavigate();
   const [loading, setLaoding] = useState(false);
   const {
@@ -25,6 +27,8 @@ export default function Login() {
         data,
       );
       localStorage.setItem("token", res.data.token);
+      saveUser();
+
       navigate("/dashboard");
       setLaoding(false);
     } catch (error) {

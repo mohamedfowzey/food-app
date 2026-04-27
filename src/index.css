@@ -5,7 +5,20 @@
     --main-background: rgba(255, 255, 255, 1);
     --accent-color: rgba(74, 163, 90, 1);
 }
-
+.light {
+    --main-foreground: rgba(73, 73, 73, 1);
+    --ternary-foreground: rgba(73, 73, 73, 0.6);
+    --ternary-background: rgba(248, 249, 250, 1);
+    --main-background: rgba(255, 255, 255, 1);
+    --accent-color: rgba(74, 163, 90, 1);
+}
+.dark{
+    --main-foreground: rgba(255, 255, 255, 1);
+    --ternary-foreground: rgba(255, 255, 255, 1);
+    --ternary-background: rgba(73, 73, 73, 1);
+    --main-background: rgba(0, 0, 0, 1);
+     --accent-color: rgba(74, 163, 90, 1);
+}
 input{
     caret-color: var(--accent-color);
     caret-shape:block;
