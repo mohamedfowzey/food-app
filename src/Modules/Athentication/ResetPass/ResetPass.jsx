@@ -5,7 +5,7 @@ import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { RESET_PASSWORD } from '../../../Constants/END_POINTS';
 import MainButton from '../../Shared/MainButton/MainButton';
 import CustomInput from '../../Shared/CustomInput/CustomInput';
-import LoadingElement from '../../Shared/loadingElement/loadingElement';
+import LoadingElement from '../../Shared/LoadingElement/LoadingElement';
 
 export default function ResetPass() { 
   const [loading,setLoading] = useState()

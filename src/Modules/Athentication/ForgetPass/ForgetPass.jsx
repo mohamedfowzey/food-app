@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import CustomInput from '../../Shared/CustomInput/CustomInput';
 import MainButton from '../../Shared/MainButton/MainButton';
-import LoadingElement from '../../Shared/loadingElement/loadingElement';
+import LoadingElement from '../../Shared/LoadingElement/LoadingElement';
 
 export default function ForgetPass() {
   const navigate = useNavigate();
