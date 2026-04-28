@@ -6,7 +6,7 @@ import MainButton from "../../Shared/MainButton/MainButton";
 import CustomInput from "../../Shared/CustomInput/CustomInput";
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
-import LoadingElement from "../../Shared/loadingElement/loadingElement";
+import LoadingElement from "../../Shared/LoadingElement/LoadingElement";
 import { ContextFounder } from "../../../contexts/UserConrtrxt";
 
 export default function Login() {
