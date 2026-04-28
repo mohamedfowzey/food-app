@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import CustomInput from '../../Shared/CustomInput/CustomInput';
 import MainButton from '../../Shared/MainButton/MainButton';
 import LoadingElement from '../../Shared/LoadingElement/LoadingElement';
+import { toast } from 'react-toastify';
 
 export default function ForgetPass() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function ForgetPass() {
       navigate('/reset-password', {state:{email:data.email}})
     }
     catch (error) {
-      console.log( error.message);
+      toast.error(error.message);
     }
     setLoading(false)
   }
