@@ -18,7 +18,7 @@ export default function ForgetPass() {
       navigate('/reset-password', {state:{email:data.email}})
     }
     catch (error) {
-      console.log("Error occurred while requesting password reset:", error);
+      console.log( error.message);
     }
     setLoading(false)
   }
