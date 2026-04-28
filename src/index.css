@@ -1,90 +1,140 @@
 :root {
-    --main-foreground: rgba(73, 73, 73, 1);
-    --ternary-foreground: rgba(73, 73, 73, 0.6);
-    --ternary-background: rgba(248, 249, 250, 1);
-    --main-background: rgba(255, 255, 255, 1);
-    --accent-color: rgba(74, 163, 90, 1);
+  --main-foreground: rgba(73, 73, 73, 1);
+  --ternary-foreground: rgba(73, 73, 73, 0.6);
+  --ternary-background: rgba(248, 249, 250, 1);
+  --main-background: rgba(255, 255, 255, 1);
+  --accent-color: rgba(74, 163, 90, 1);
+  --light-accent-color: rgba(74, 163, 90, 0.3);
+  --bg-sidebar: rgba(31, 38, 62, 1);
+  --sidebar-text: whitesmoke;
 }
 .light {
-    --main-foreground: rgba(73, 73, 73, 1);
-    --ternary-foreground: rgba(73, 73, 73, 0.6);
-    --ternary-background: rgba(248, 249, 250, 1);
-    --main-background: rgba(255, 255, 255, 1);
-    --accent-color: rgba(74, 163, 90, 1);
+  --main-foreground: rgba(73, 73, 73, 1);
+  --ternary-foreground: rgba(73, 73, 73, 0.6);
+  --ternary-background: rgba(248, 249, 250, 1);
+  --main-background: rgba(255, 255, 255, 1);
+  --accent-color: rgba(74, 163, 90, 1);
+  --bg-sidebar: rgba(31, 38, 62, 1);
+  --sidebar-text: whitesmoke;
 }
-.dark{
-    --main-foreground: rgba(255, 255, 255, 1);
-    --ternary-foreground: rgba(255, 255, 255, 1);
-    --ternary-background: rgba(73, 73, 73, 1);
-    --main-background: rgba(0, 0, 0, 1);
-     --accent-color: rgba(74, 163, 90, 1);
+.dark {
+  --main-foreground: rgba(255, 255, 255, 1);
+  --ternary-foreground: rgba(255, 255, 255, 1);
+  --ternary-background: rgba(73, 73, 73, 1);
+  --main-background: rgba(0, 0, 0, 1);
+  --accent-color: rgba(74, 163, 90, 1);
+  --bg-sidebar: var(--main-background) --sidebar-text: var(--main-foreground);
 }
-input{
-    caret-color: var(--accent-color);
-    caret-shape:block;
+.sidebar-container {
+  caret-color: transparent;
 }
-.error-span{font-size: 12px;}
-.text-main{
-    color: var(--main-foreground) !important ;
+input {
+  caret-color: var(--accent-color);
+  caret-shape: block;
+}
+.error-span {
+  font-size: 12px;
+}
+.text-main {
+  color: var(--main-foreground) !important ;
 }
 
-.text-ternary{
-    color: var(--ternary-foreground);
+.text-ternary {
+  color: var(--ternary-foreground);
 }
-.text-accent{
-    color: var(--accent-color);
+.text-accent {
+  color: var(--accent-color);
+  color:  var(--);
 }
-.bg-main{
-    background-color: var(--main-background);
+.text-sidebar {
+  color: var(--sidebar-text);
 }
-.bg-accent{
-    background-color: var(--accent-color);
+.bg-main {
+  background-color: var(--main-background);
 }
-.auth-bg{
-    caret-color: transparent;
-    background-image: url('./assets/auth-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.bg-accent {
+  background-color: var(--accent-color);
+  
+}
+.bg-sidebar {
+  background-color: var(--bg-sidebar);
+}
+.auth-bg {
+  caret-color: transparent;
+  background-image: url("./assets/auth-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
 }
-.bg-ternary{
-    background-color: var(--ternary-background);
+.bg-ternary {
+  background-color: var(--ternary-background);
 }
-.top-4{
-    top: 4px
+.top-4 {
+  top: 4px;
 }
-.icon-container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height:60%;
-    padding-right: 4px;
-     border-right: 1px solid var(--ternary-foreground);
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60%;
+  padding-right: 4px;
+  border-right: 1px solid var(--ternary-foreground);
+  cursor: pointer;
+  top: 20%;
+  left: 6px;
+}
+.end-icone-container {
+  height: 60%;
+  cursor: pointer;
+  top: 20%;
+  right: 8px;
+}
+.ps-6 {
+  padding-left: 60px;
+}
+.btn:hover {
+  background-color: var(--accent-color);
+}
+.ps-sidebar-container {
+  background-color: inherit !important;
+}
+.sidebar-container .ps-menu-button{
+    transition: all 0.3s ease;
+}
+.sidebar-container .ps-menu-button:hover,
+.sidebar-container .active-link {
+  background-color: var(--light-accent-color) !important;
+  border-left: 4px solid var(--accent-color) !important;
+}
+.cursor-pointer{
     cursor: pointer;
-    top:20%;
-    left: 6px;
 }
-.end-icone-container{
-    height: 60%;
-    cursor: pointer;
-    top: 20%;
-    right: 8px;
+.hieght-small{
+    height: 80px;
+    transition: all 0.3s ease;
 }
-.ps-6{
-    padding-left: 60px;
+.hieght-big{
+    height: 120px;
+    transition: all 0.3s ease;
 }
-.btn:hover{
-    background-color: var(--accent-color);
-}
+.bg-header{
+    background-image: url("./assets/headerBG.svg");
+    background-size: cover;
+    background-position: center;
+    color: whitesmoke;
+    height: fit-content;}
+    .ps-sidebar-root{
+      border-right: none !important;
+    }
