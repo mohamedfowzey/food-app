@@ -11,7 +11,7 @@ import MasterLayout from './Modules/Dashboard/MasterLayout'
 import Login from './Modules/Athentication/Login/Login'
 import Register from './Modules/Athentication/Register/Register'
 import ResetPass from './Modules/Athentication/ResetPass/ResetPass'
-import VerifyPass from './Modules/Athentication/VerifyPass/VerifyPass'
+import VerifyEmail from './Modules/Athentication/VerifyEmail/VerifyEmail'
 import ForgetPass from './Modules/Athentication/ForgetPass/ForgetPass'
 import AddRecipe from './Modules/Dashboard/AddRecipe/AddRecipe'
 import Home from './Modules/Dashboard/Home/Home'
@@ -26,7 +26,7 @@ function App() {
       {path:'/register', element:<Register/>},
       {path:'/forget-password', element:<ForgetPass/>},
       {path:'/reset-password', element:<ResetPass/>},
-      {path:'/verify-password', element:<VerifyPass/>},
+      {path:'/verify-email', element:<VerifyEmail/>},
     ]},
     {
       path:'/dashboard',

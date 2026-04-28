@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { VERIFY_PASSWORD } from '../../../Constants/END_POINTS';
 
-export default function VerifyPass() {
+export default function VerifyEmail() {
   const { register, handleSubmit, formState: { errors }, } = useForm();
   const {state} = useLocation();
   const navigate = useNavigate();
