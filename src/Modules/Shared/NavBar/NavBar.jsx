@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ContextFounder } from "../../../contexts/UserConrtrxt";
-import avatar from "../../../assets/UserAvatar.svg";
+import avatar from "../../../assets/userAvatar.svg";
 
 export default function NavBar() {
   const { user, mood,toggleMood } = useContext(ContextFounder);
