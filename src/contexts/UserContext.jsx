@@ -15,6 +15,10 @@ export function UserContextProvider({children}){
         setUser(decodedToken);
         
     }
+    const logout = () => {
+        localStorage.removeItem('token');
+        setUser(null);
+    }
     useEffect(() => {
         (()=>{saveUser()})();
         console.log(user);
@@ -22,7 +26,7 @@ export function UserContextProvider({children}){
     },[])
 
     return (
-        <ContextFounder.Provider value={{ user, saveUser, mood, toggleMood }}>
+        <ContextFounder.Provider value={{ user, saveUser, mood, toggleMood,logout }}>
             {children}
         </ContextFounder.Provider>
     )

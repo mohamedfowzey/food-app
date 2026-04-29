@@ -6,6 +6,7 @@ import { RESET_PASSWORD } from '../../../Constants/END_POINTS';
 import MainButton from '../../Shared/MainButton/MainButton';
 import CustomInput from '../../Shared/CustomInput/CustomInput';
 import LoadingElement from '../../Shared/LoadingElement/LoadingElement';
+import { toast } from 'react-toastify';
 
 export default function ResetPass() { 
   const [loading,setLoading] = useState()
@@ -31,13 +32,13 @@ else{
       setLoading(true)
       try{
       const res = await axios.post(RESET_PASSWORD,{...data,email});
-      console.log(res);
-      navigate('/login')
+      navigate('/login');
+      toast.success(res.data.message)
     }
 
       catch(e){
         console.log(e);
-        
+        toast.error(e.response?.data?.message || 'something went wrong');
       }
       setLoading(false)
       

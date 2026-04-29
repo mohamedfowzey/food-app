@@ -59,6 +59,10 @@ input {
 .bg-sidebar {
   background-color: var(--bg-sidebar);
 }
+.rounded-top-right{
+  border-top-right-radius: 50px !important;
+  border-right: none !important;
+}
 .auth-bg {
   caret-color: transparent;
   background-image: url("./assets/auth-bg.jpg");
@@ -109,6 +113,9 @@ input {
 }
 .ps-sidebar-container {
   background-color: inherit !important;
+        border-right: none !important;
+
+
 }
 .sidebar-container .ps-menu-button{
     transition: all 0.3s ease;
@@ -136,5 +143,4 @@ input {
     color: whitesmoke;
     height: fit-content;}
     .ps-sidebar-root{
-      border-right: none !important;
     }
