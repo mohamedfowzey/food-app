@@ -3,6 +3,7 @@ import { Menu, MenuItem, Sidebar } from 'react-pro-sidebar'
 import { Link } from 'react-router-dom'
 import logo from '../../../assets/3.png'
 import { ContextFounder } from '../../../contexts/UserConrtrxt';
+import OnlyAdmins from '../Prtected/OnlyAdmins';
 
 export default function SideBar() {
   const [collapsed, setCollapsed] = useState(false);
@@ -19,7 +20,9 @@ export default function SideBar() {
   </div>
   <Menu>
     <MenuItem icon={<i className="fas fa-home"></i>} component={<Link to="/dashboard"/>}> Home </MenuItem>
-    <MenuItem icon={<i className="fas fa-users"></i>} component={<Link to="/dashboard/users"/>}> Users </MenuItem>
+    <OnlyAdmins>
+      <MenuItem icon={<i className="fas fa-users"></i>} component={<Link to="/dashboard/users"/>}> Users </MenuItem>
+    </OnlyAdmins>
     <MenuItem icon={<i className="fas fa-list"></i>} component={<Link to="/dashboard/categories"/>}> Categories </MenuItem>
     <MenuItem icon={<i className="fas fa-utensils"></i>} component={<Link to="/dashboard/recipes"/>}> Recipes </MenuItem>
     <MenuItem icon={<i className="fas fa-key"></i>} component={<Link to="/dashboard/change-password"/>}> change Password </MenuItem>

@@ -17,6 +17,8 @@ import AddRecipe from './Modules/Dashboard/AddRecipe/AddRecipe'
 import Home from './Modules/Dashboard/Home/Home'
 import ProtectedRoute from './Modules/Shared/Prtected/ProtectedRoute'
 import { ToastContainer } from 'react-toastify'
+import AuthorizedRoute from './Modules/Shared/Prtected/authorizedRoute'
+import { ContextFounder } from './contexts/UserConrtrxt'
 
 function App() {
   const routes = createBrowserRouter([
@@ -39,11 +41,12 @@ function App() {
         {path:'add-recipe', element:<AddRecipe/>},
         {path:'Favorites', element:<FavoritesList/>},
         {path:'categories', element:<Categorieslist/>},
-        {path:'users', element:<UsersList/>},
+        {path:'users', element:<AuthorizedRoute><UsersList/></AuthorizedRoute>},
       ]
     }
     
     ])
+     
   return (
    <> <ToastContainer
 position="top-center"

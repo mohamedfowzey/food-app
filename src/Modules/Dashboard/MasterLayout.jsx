@@ -10,10 +10,9 @@ export default function MasterLayout() {
   return (
     <>
       <div className={`d-flex ${mood} bg-main text-main`}>
-        <SideBar className=""/>
+        <SideBar />
         <div className="w-100 py-3 px-2">
           <NavBar />
-          <Header />
           <Outlet />
         </div>
       </div>
