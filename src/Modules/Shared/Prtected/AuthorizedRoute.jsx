@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
 import { ContextFounder } from "../../../contexts/UserConrtrxt";
 import { Navigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 export default function AuthorizedRoute({ children }) {
-  const { user } = useContext(ContextFounder);
-  
-  return user?.userGroup === "SuperAdmin" ? (
+  const userGroup = jwtDecode(localStorage.getItem('token'))?.userGroup;
+  return userGroup === "SuperAdmin" ? (
     children
   ) : (
     <Navigate to={"/notfound"} />

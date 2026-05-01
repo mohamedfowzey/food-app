@@ -23,7 +23,12 @@
   --ternary-background: rgba(73, 73, 73, 1);
   --main-background: rgba(0, 0, 0, 1);
   --accent-color: rgba(74, 163, 90, 1);
-  --bg-sidebar: var(--main-background) --sidebar-text: var(--main-foreground);
+  /* --bg-sidebar: var(--main-background)  */
+  /* --sidebar-text: var(--main-foreground); */
+}
+.table {
+  --bs-table-color: var(--main-foreground) !important;
+  --bs-table-bg: var(--main-background) !important;
 }
 .sidebar-container {
   caret-color: transparent;
@@ -38,13 +43,11 @@ input {
 .text-main {
   color: var(--main-foreground) !important ;
 }
-
 .text-ternary {
   color: var(--ternary-foreground);
 }
 .text-accent {
   color: var(--accent-color);
-  color:  var(--);
 }
 .text-sidebar {
   color: var(--sidebar-text);
@@ -54,12 +57,11 @@ input {
 }
 .bg-accent {
   background-color: var(--accent-color);
-  
 }
 .bg-sidebar {
   background-color: var(--bg-sidebar);
 }
-.rounded-top-right{
+.rounded-top-right {
   border-top-right-radius: 50px !important;
   border-right: none !important;
 }
@@ -113,34 +115,31 @@ input {
 }
 .ps-sidebar-container {
   background-color: inherit !important;
-        border-right: none !important;
-
-
+  border-right: none !important;
 }
-.sidebar-container .ps-menu-button{
-    transition: all 0.3s ease;
+.sidebar-container .ps-menu-button {
+  transition: all 0.3s ease;
 }
 .sidebar-container .ps-menu-button:hover,
 .sidebar-container .active-link {
   background-color: var(--light-accent-color) !important;
   border-left: 4px solid var(--accent-color) !important;
 }
-.cursor-pointer{
-    cursor: pointer;
+.cursor-pointer {
+  cursor: pointer;
 }
-.hieght-small{
-    height: 80px;
-    transition: all 0.3s ease;
+.hieght-small {
+  height: 80px;
+  transition: all 0.3s ease;
 }
-.hieght-big{
-    height: 120px;
-    transition: all 0.3s ease;
+.hieght-big {
+  height: 120px;
+  transition: all 0.3s ease;
 }
-.bg-header{
-    background-image: url("./assets/headerBG.svg");
-    background-size: cover;
-    background-position: center;
-    color: whitesmoke;
-    height: fit-content;}
-    .ps-sidebar-root{
-    }
+.bg-header {
+  background-image: url("./assets/headerBG.svg");
+  background-size: auto;
+  background-position: center;
+  color: whitesmoke;
+  height: fit-content;
+}

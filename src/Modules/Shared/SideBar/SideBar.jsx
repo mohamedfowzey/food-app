@@ -25,7 +25,7 @@ export default function SideBar() {
     </OnlyAdmins>
     <MenuItem icon={<i className="fas fa-list"></i>} component={<Link to="/dashboard/categories"/>}> Categories </MenuItem>
     <MenuItem icon={<i className="fas fa-utensils"></i>} component={<Link to="/dashboard/recipes"/>}> Recipes </MenuItem>
-    <MenuItem icon={<i className="fas fa-key"></i>} component={<Link to="/dashboard/change-password"/>}> change Password </MenuItem>
+    <MenuItem icon={<i className="fas fa-key"></i>}> change Password </MenuItem>
     <MenuItem onClick={onlogout} icon={<i className="fas fa-sign-out-alt"></i>} component={<Link to="/login"/>}> log out </MenuItem>
   </Menu>
 </Sidebar>

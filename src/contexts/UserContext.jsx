@@ -20,7 +20,6 @@ export function UserContextProvider({children}){
     }
     useEffect(() => {
         (()=>{saveUser()})();
-        console.log(user);
 
     },[])
 
