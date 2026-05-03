@@ -56,7 +56,7 @@ export default function UsersList() {
       {users.length === 0 ? (
         <NoData />
       ) : (
-      <div className='table-responsive-md'>
+      <div className='table-responsive'>
         <table className="table">
           <thead>
             <tr>

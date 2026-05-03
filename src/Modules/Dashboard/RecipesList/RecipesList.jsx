@@ -42,7 +42,7 @@ const getRecipes = async () => {
   return (
     <>
       <Header image={headerBoy} title={`Recipes Items`} description="You can now add your items that any user can order it from the Application and you can edit" />
-      <div className="row p-5 justify-content-between align-items-center">
+      <div className="row p-5 justify-content-between align-items-center flex-wrap">
               <div className="col-md-8">
                 <h2>Recipe Table Details</h2>
                 <p>Manage your recipes here</p>
@@ -59,6 +59,7 @@ const getRecipes = async () => {
             {recipes.length === 0 ? (
                     <NoData/>
                   ) : (
+                    <div className="table-responsive">
                   <table className="table">
                     <thead>
                       <tr>
@@ -106,6 +107,7 @@ const getRecipes = async () => {
                       ))}
                     </tbody>
                   </table>
+                  </div>
                   
                   )}
                   

@@ -7,7 +7,7 @@ export default function NavBar() {
   return (
     <div className="navbar bg-ternary ">
       <div className="container">
-        <div className="w-fit-content ms-auto d-flex">
+        <div className="w-fit-content ms-auto d-flex flex-wrap-reverse">
           <div>
             <img width={30} src={avatar} alt="" />
             <span className="ps-2">{user?.userName}</span>

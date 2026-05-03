@@ -1,48 +1,32 @@
-import React, { useState } from 'react'
-import MainButton from '../MainButton/MainButton'
-import { useForm } from 'react-hook-form'
 import { Button, Modal } from 'react-bootstrap';
-import { API } from '../../../Constants/axiosClient';
+import MainButton from '../MainButton/MainButton';
 
-export default function CategoriesDataModal(props) {
-  const [inputValue, setInputValue] = useState(props.category?.name || '');
-  const {register,handleSubmit,formState:{errors}} = useForm();
-  const onsubmit = (data) => {
-    if(props.type == 'add'){
-    API.post('/Category',data).then(()=>{props.refresh()})
-    props.onHide()
-  }
-  else if(props.type == 'edit'){
-    API.put(`/Category/${props.category?.id}`,data).then(()=>{props.refresh()})
-    props.onHide()
-  }
-}
-  return (
-     <Modal
-      show={props.show}
-      onHide={props.onHide}
+export default function CategoriesDataModal({show,onhide,register,errors,onsubmit}) {
+  
+  return (<>
+<Modal
+      show={show}
+      onHide= {onhide}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
+          add new category
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <form onSubmit={handleSubmit(onsubmit)}>
+        <form onSubmit={onsubmit}>
           <input type="text" className='form-control' {...register("name", { required: 'name is required' })} placeholder='Category Name'
-          value={inputValue} onChange={e=>setInputValue(e.target.value)} 
           />
           {errors.name && <p className='text-danger'>{errors.name.message}</p>}
           <div className="text-end mt-3 ">
-                      <MainButton width={'auto'}>Save</MainButton>
-        <Button className='ms-2' onClick={props.onHide}>Close</Button>
-
+        <MainButton width={'auto'}>Save</MainButton>
+        <Button className='ms-2' onClick={() => {onhide();}}>Close</Button>
           </div>
         </form>
       </Modal.Body>
     </Modal>
-  )
+  </>  )
 }

@@ -13,7 +13,7 @@ export default function SideBar() {
     logout();
   }
   return (
-<div>
+<>
 <Sidebar collapsed={collapsed} className='rounded-top-right overflow-hidden bg-sidebar  text-sidebar border-none position-sticky top-0 vh-100 sidebar-container' >
   <div className="w-100 text-center cursor-pointer" onClick={()=>{setCollapsed(!collapsed)}}>
     <img height={80} className={collapsed ? 'hieght-small' : 'hieght-big'} src={logo} alt="logo" />
@@ -29,6 +29,6 @@ export default function SideBar() {
     <MenuItem onClick={onlogout} icon={<i className="fas fa-sign-out-alt"></i>} component={<Link to="/login"/>}> log out </MenuItem>
   </Menu>
 </Sidebar>
-</div>  
+</>  
 )
 }
