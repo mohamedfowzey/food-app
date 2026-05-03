@@ -17,7 +17,8 @@ export default function ConfimationModal({show,onHide,ondelete,type}) {
         </Modal.Title> */}
       {/* </Modal.Header> */} 
       <Modal.Body className='text-center'>
-        <span style={{width:32,height:32}} className="position-absolute top-0 end-0 rounded-circle border-2 border border-danger m-3 text-danger cursor-pointer fs-6 d-inline-flex align-items-center justify-content-center" >
+        <span style={{width:32,height:32}}
+         className="position-absolute top-0 end-0 rounded-circle border-2 border border-danger m-3 text-danger cursor-pointer fs-6 d-inline-flex align-items-center justify-content-center" >
           <i onClick={onHide} className='fa fa-close text-danger'></i>
         </span>
         <img src={sadGirl} alt="Sad Girl" />

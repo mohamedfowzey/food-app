@@ -73,43 +73,43 @@ export default function Categorieslist() {
           </div>
         </div>
       </div>
-      {categories.length === 0 ? (
-        <NoData/>
-      ) : (
-      <table className="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">name</th>
-            <th scope="col">creation date</th>
-            <th scope="col">actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {categories.map((category) => (
-            <tr key={category.id}>
-              <th scope="row">{category.id}</th>
-              <td>{category.name}</td>
-              <td>{category.creationDate}</td>
-              <td className="text-center">
-                {deletingId === category.id  ? <LoadingElement color="text-danger"  /> : 
-                  <i
-                  className="fa fa-trash text-danger cursor-pointer"
-                  onClick={() => {
-                    setSelectedCategory(category);
-                    setModalShow(true);
-                  }}
-                ></i>}
-                <i 
-                  className="fa fa-edit text-warning cursor-pointer ms-3"
-                  onClick={() => {}}
-                ></i>
-              </td>
+        {categories.length === 0 ? (
+          <NoData/>
+        ) : (
+        <table className="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">name</th>
+              <th scope="col">creation date</th>
+              <th scope="col">actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      )}
+          </thead>
+          <tbody>
+            {categories.map((category) => (
+              <tr key={category.id}>
+                <th scope="row">{category.id}</th>
+                <td>{category.name}</td>
+                <td>{category.creationDate}</td>
+                <td className="text-center">
+                  {deletingId === category.id  ? <LoadingElement color="text-danger"  /> : 
+                    <i
+                    className="fa fa-trash text-danger cursor-pointer"
+                    onClick={() => {
+                      setSelectedCategory(category);
+                      setModalShow(true);
+                    }}
+                  ></i>}
+                  <i 
+                    className="fa fa-edit text-warning cursor-pointer ms-3"
+                    onClick={() => {}}
+                  ></i>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        )}
       <ConfimationModal
       type={'category'}
         show={modalShow}
