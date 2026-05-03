@@ -13,8 +13,10 @@ export default function NavBar() {
             <span className="ps-2">{user?.userName}</span>
           </div>
           <div className="form-check form-switch ps-4">
-            <input  onChange={toggleMood} type="checkbox" className="btn-check" id="btn-check" autoComplete="off" />
-            <label className="btn bg-main text-main" htmlFor="btn-check">{mood}</label>
+            <input  onChange={toggleMood} type="checkbox" className="btn-check p-0 border-0" id="btn-check" autoComplete="off" />
+            <label className="btn bg-main text-main" htmlFor="btn-check">{
+            mood == 'light' ? <i className=" fa fa-sun"/> : <i className=" fa fa-moon"/>
+            }</label>
           </div>
         </div>
       </div>

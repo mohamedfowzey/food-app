@@ -11,7 +11,7 @@ export default function Header({title,description,image}) {
           <h1>{firstWord} <span className='fw-normal fs-2'>{restOfTitle}</span></h1>
           <p>{description}</p>
         </div>
-        <div className="col-md-5"><img className='img-fluid' src={image} alt="" /></div>
+        <div className="col-md-5 text-end"><img className='img-fluid' src={image} alt="" /></div>
       </div>
     </div>
   )

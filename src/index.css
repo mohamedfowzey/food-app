@@ -23,8 +23,6 @@
   --ternary-background: rgba(73, 73, 73, 1);
   --main-background: rgba(0, 0, 0, 1);
   --accent-color: rgba(74, 163, 90, 1);
-  /* --bg-sidebar: var(--main-background)  */
-  /* --sidebar-text: var(--main-foreground); */
 }
 .table {
   --bs-table-color: var(--main-foreground) !important;
