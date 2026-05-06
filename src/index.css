@@ -8,6 +8,9 @@
   --bg-sidebar: rgba(31, 38, 62, 1);
   --sidebar-text: whitesmoke;
     --light-accent:rgba(173, 252, 168, 0.475);
+    
+    --bs-pagination-active-bg: var(--accent-color) !important;
+    --bs-pagination-active-border-color:var(--accent-color) !important;
     /* var(--light-accent-color); */
 
 
@@ -20,11 +23,23 @@
   --accent-color: rgba(74, 163, 90, 1);
   --bg-sidebar: rgba(31, 38, 62, 1);
   --sidebar-text: whitesmoke;
+  
+    --bs-pagination-active-bg: var(--accent-color) !important;
+    --bs-pagination-active-border-color:var(--accent-color) !important;
+    --bs-pagination-color: var(--accent-color) !important;
+    --bs-modal-color:var(--main-foreground) !important;
+    --bs-modal-bg:var(--main-background) !important;
+    --bs-pagination-hover-bg: var(--main-background) !important;
+    --bs-pagination-hover-color:var(--accent-color) !important;
+    --bs-pagination-focus-bg: var(--main-background) !important;
+    --bs-pagination-focus-color:var(--accent-color) !important;
+
+
   /* --light-accent:rgba(240, 255, 239, 1); */
 }
 .dark {
-  --main-foreground: rgba(255, 255, 255, 1);
-  --ternary-foreground: rgba(255, 255, 255, 1);
+  --main-foreground: rgba(255, 255, 255, 0.7);
+  --ternary-foreground: rgba(255, 255, 255, 0.5);
   --ternary-background: rgba(73, 73, 73, 1);
   --main-background: rgba(0, 0, 0, 1);
   --accent-color: rgba(74, 163, 90, 1);  
@@ -33,11 +48,26 @@
     --bs-body-bg :var(--ternary-background);
     --bs-body-color:var(--ternary-foreground);
         --place-holder-color:red;
+        
+    --bs-pagination-active-bg: var(--accent-color) !important;
+    --bs-pagination-active-border-color:var(--accent-color) !important;
+    --bs-pagination-color: var(--accent-color) !important;
 
+  
+    --bs-modal-color:var(--main-foreground) !important;
+    --bs-modal-bg:var(--main-background) !important;
+    --bs-pagination-hover-bg:black !important;
+    --bs-pagination-hover-color:var(--accent-color) !important;
+    --bs-pagination-focus-bg:black !important;
+    --bs-pagination-focus-color:var(--accent-color) !important;
   }
 .table {
   --bs-table-color: var(--main-foreground) !important;
   --bs-table-bg: var(--main-background) !important;
+}
+.modal{
+     --bs-modal-color:var(--main-foreground) !important;
+    --bs-modal-bg:var(--main-background) !important;
 }
 .sidebar-container {
   caret-color: transparent;

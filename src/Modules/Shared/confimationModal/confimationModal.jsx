@@ -1,22 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import sadGirl from '../../../assets/sadGirl.svg'
+import { ContextFounder } from '../../../contexts/UserConrtrxt'
 
 export default function ConfimationModal({show,onHide,ondelete,type}) {
+  const {mood} = useContext(ContextFounder)
   return (
     <Modal
+    className={mood}
       show={show}
       onHide={onHide}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      {/* <Modal.Header closeButton>
-        {/* <Modal.Title id="contained-modal-title-vcenter">
-          Confirm Delete
-        </Modal.Title> */}
-      {/* </Modal.Header> */} 
-      <Modal.Body className='text-center'>
+      <Modal.Body className={`text-center ${mood}`}>
         <span style={{width:32,height:32}}
          className="position-absolute top-0 end-0 rounded-circle border-2 border border-danger m-3 text-danger cursor-pointer fs-6 d-inline-flex align-items-center justify-content-center" >
           <i onClick={onHide} className='fa fa-close text-danger'></i>

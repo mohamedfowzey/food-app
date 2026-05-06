@@ -101,12 +101,10 @@ export default function AddRecipe() {
       });
       setValue('recipeImage',[response.data]);
     } catch (e) {
-      console.log(e);
+      toast(e?.response?.data?.message || 'can not load the image');
     }
   };
   useEffect(() => {
-    console.log(state?.id);
-
     (() => {
       getCategories();
       getTags();

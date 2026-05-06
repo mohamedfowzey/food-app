@@ -10,12 +10,18 @@ import MainButton from "../MainButton/MainButton";
 import LoadingElement from "../LoadingElement/LoadingElement";
 import { useForm } from "react-hook-form";
 import CustomInput from "../CustomInput/CustomInput";
-import lightLogo from '../../../assets/logo.png'
-
+import lightLogo from "../../../assets/logo.png";
+import { API } from "../../../Constants/axiosClient";
+import { toast } from "react-toastify";
 
 export default function SideBar() {
-  const [loading,setLoading] = useState(false);
-  const {register,handleSubmit,formState:{errors},watch}=useForm()
+  const [loading, setLoading] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm();
   const [showChangePassword, setShowChangePassword] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
   const { logout } = useContext(ContextFounder);
@@ -23,12 +29,17 @@ export default function SideBar() {
     localStorage.removeItem("token");
     logout();
   };
-  const onsubmit = (data)=>{
+  const onsubmit = async (data) => {
     setLoading(true);
-    setTimeout(()=>setLoading(false),3000)
-console.log(data);
-
-  }
+    try {
+      const res = await API.put("Users/ChangePassword", data);
+      toast.success(res?.data?.message || 'password changed')
+      setLoading(false);
+    } catch (error) {
+      toast.error(error.response.data.message)
+      setLoading(false);
+    }
+  };
   return (
     <>
       <Sidebar
@@ -98,41 +109,48 @@ console.log(data);
           </MenuItem>
         </Menu>
       </Sidebar>
-      {/* <ChangePasswordModal onhide={()=>setShowChangePassword(false)} show={showChangePassword}/> */}
       <Modal
         show={showChangePassword}
         onHide={() => setShowChangePassword(false)}
         centered
       >
-        {/* <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header> */}
         <Modal.Body>
           <div className="bg-main rounded-4 p-5 z-2">
             <div className="text-center my-4">
               <img className="w-75" src={lightLogo} alt="logo" />
             </div>
-            <h1 className="fs-3 fw-bold mb-1 text-main"> Reset  Password</h1>
-                  <p className="text-ternary mb-4 text-sm">
-            Please Enter Your Otp  or Check Your Inbox      </p>
+            <h1 className="fs-3 fw-bold mb-1 text-main">
+              {" "}
+              change your Password
+            </h1>
+            <p className="text-ternary mb-4 text-sm">
+              Please Enter Your old password and new one twice.{" "}
+            </p>
             <form onSubmit={handleSubmit(onsubmit)}>
-              
-                    <CustomInput type={'password'} name={'oldPassword'} errors={errors} register={register}/>
-                    <CustomInput type={'password'} name={'password'} errors={errors} register={register}/>
-                    <CustomInput type={'password'} name={'confirmPassword'} errors={errors} register={register} Watch={watch}/>
-                
-                    {loading?<LoadingElement/>:<MainButton>submit</MainButton>}
+              <CustomInput
+                type={"password"}
+                name={"oldPassword"}
+                errors={errors}
+                register={register}
+              />
+              <CustomInput
+                type={"password"}
+                name={"newPassword"}
+                errors={errors}
+                register={register}
+              />
+              <CustomInput
+                type={"password"}
+                name={"confirmNewPassword"}
+                errors={errors}
+                register={register}
+                Watch={watch}
+              />
+
+              {loading ? <LoadingElement /> : <MainButton>submit</MainButton>}
             </form>
           </div>
         </Modal.Body>
-        {/* <Modal.Footer>
-          <Button variant="secondary" onClick={()=>setShowChangePassword(false)}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={()=>setShowChangePassword(false)}>
-            Save Changes
-          </Button>
-        </Modal.Footer> */}
       </Modal>
     </>
   );

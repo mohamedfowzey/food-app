@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react'
+import React, {  useContext, useEffect, useState } from 'react'
 import headerBoy from '../../../assets/headerBoy.svg'
 import Header from '../../Shared/Header/Header'
 import { useNavigate } from 'react-router-dom';
@@ -10,18 +10,22 @@ import ConfimationModal from '../../Shared/confimationModal/confimationModal';
 import LoadingElement from '../../Shared/LoadingElement/LoadingElement';
 import sadGirl from '../../../assets/sadGirl.svg'
 import { Pagination } from 'react-bootstrap';
+import { ContextFounder } from '../../../contexts/UserConrtrxt';
 export default function RecipesList() {
 const navigate = useNavigate();
 const [recipes, setRecipes] = useState([]);
 const [deletingId, setDeletingId] = useState('');
 const [modalShow, setModalShow] = useState(false);
 const [selectedRecipe, setSelectedRecipe] = useState(null);
-const [active,seActive] = useState(1);
-
+const [active,setActive] = useState(1);
+const {mood} = useContext(ContextFounder)
 const onDelete = () => {
   setDeletingId(selectedRecipe?.id);
       setModalShow(false);
-    API.delete(`/Recipe/${selectedRecipe?.id}`).then(() => {
+    API.delete(`/Recipe/${selectedRecipe?.id}`
+
+    ).then(() => {
+      toast('recipe deleted')
       getRecipes();
     }).catch((err) => {
       toast.error(err.response?.data?.message);
@@ -113,9 +117,9 @@ const getRecipes = async (n) => {
                   </div>
                   
                   )}
-                  <Pagination>
+                  <Pagination className={`${mood}`}>
                     {[1,2,3,4].map((n)=>(
-                    <Pagination.Item key={n} active={n===active} onClick={()=>{seActive(n);getRecipes(n)}}>{n}</Pagination.Item>))}
+                    <Pagination.Item key={n} active={n===active} onClick={()=>{setActive(n);getRecipes(n)}}>{n}</Pagination.Item>))}
                   </Pagination>
                   
                         <ConfimationModal

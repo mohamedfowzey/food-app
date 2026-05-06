@@ -1,15 +1,11 @@
 import { Button, Modal } from "react-bootstrap";
 import MainButton from "../MainButton/MainButton";
-import { useForm } from "react-hook-form";
 import { API } from "../../../Constants/axiosClient";
 import { toast } from "react-toastify";
 
-export default function EditCategoryModal({ show, onhide, categoryId,refresh }) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+export default function EditCategoryModal({ show, onhide, categoryId,refresh,register,handleSubmit,errors }) {
+  
+
   const onsubmit = async (data) => {
         onhide()
     const toastId = toast.loading('editing')
@@ -50,9 +46,6 @@ export default function EditCategoryModal({ show, onhide, categoryId,refresh }) 
             )}
             <div className="text-end mt-3 ">
               <MainButton width={"auto"}>Save</MainButton>
-              <Button className="ms-2" type="button" onClick={onhide}>
-                Close
-              </Button>
             </div>
           </form>
         </Modal.Body>
