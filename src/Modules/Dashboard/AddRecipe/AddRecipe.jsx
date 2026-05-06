@@ -227,12 +227,20 @@ export default function AddRecipe() {
               />
               <span className='position-absolute start-100 top-0 fs-5 cursor-pointer text-nowrap '><i className="fa fa-close text-danger" onClick={()=>{setValue('recipeImage',[undefined]);setReciprToEdit(p=>({...p,imagePath:''}))}}></i></span>
             </div>)}
+            <label htmlFor="file-input" className="custom-file-input">
+              <h3><i className="fa fa-upload text-main"></i></h3>
+              <p>
+                drag & drop or <span className="text-accent cursor-pointer">choose an image</span>top upload
+              </p>
+            </label>
             <input
               {...register("recipeImage")}
               type="file"
               accept="image/*"
-              className="form-control"
+              id='file-input'
+              className="d-none"
               placeholder="recipeImage"
+
             />
           </div>
           <div className="text-end">

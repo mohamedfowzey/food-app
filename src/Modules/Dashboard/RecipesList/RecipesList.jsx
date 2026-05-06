@@ -94,7 +94,7 @@ const getRecipes = async (n) => {
                             </td>
                           <td>{recipe.description}</td>
                           <td>{recipe.price}</td>
-                          <td>{recipe.category.name}</td>
+                          <td>{recipe.category[0].name}</td>
                           <td>{recipe.tag.name}</td>
                           <td className="text-center">
                             {deletingId === recipe.id  ? <LoadingElement color="text-danger"  /> : 

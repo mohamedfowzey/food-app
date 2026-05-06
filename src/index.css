@@ -77,7 +77,7 @@ input {
   caret-shape: block;
   color: var(--main-foreground);
 }
-input::placeholder{
+input ::-webkit-input-placeholder{
   color: var(--place-holder-color);
 }
 .error-span {
@@ -218,4 +218,26 @@ input::placeholder{
 }
 .notfound .img-container img{
   max-height: 100%;
+}
+.custom-file-input::-webkit-file-upload-button{
+visibility: hidden;
+}
+
+
+.custom-file-input::placeholder{
+  visibility: hidden;
+}
+.custom-file-input{
+  border: 2px dashed var(--accent-color);
+  background-color: var(--light-accent);
+  padding: 12px;
+  text-align: center;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
