@@ -32,9 +32,9 @@ export default function Login() {
       navigate("/dashboard");
       setLaoding(false);
     } catch (error) {
-      toast.error( error.response?.data?.message || 'something went wrong');
-
       setLaoding(false);
+      toast.error( error.response?.data?.message || 'something went wrong',);
+
     }
   };
   return (

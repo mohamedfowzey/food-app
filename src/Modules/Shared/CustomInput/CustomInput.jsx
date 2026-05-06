@@ -2,6 +2,7 @@ import React, {  useState } from "react";
 const IconsForInputs = {
   email: <i className="fa-regular fa-envelope fs-4"></i>,
   password: <i className="fa-solid fa-key fs-4"></i>,
+  oldPassword: <i className="fa-solid fa-key fs-4"></i>,
   confirmPassword: <i className="fa-solid fa-key fs-4"></i>,
   otp: <i className="fa-solid fa-lock fs-4"></i>,
   phoneNumber: <i className="fa-solid fa-phone fs-4"></i>,
@@ -20,6 +21,15 @@ const validations = {
         "password must contains lowercase, uppercase, digit and special character!",
     }
   },
+  oldPassword: {
+    required: "password is required",
+    pattern: {
+      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()]).{8,}$/,
+      message:
+        "password must contains lowercase, uppercase, digit and special character!",
+    }
+  },
+  
   confirmPassword: {
     
       required: "Confirm Password is required",

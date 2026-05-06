@@ -8,12 +8,15 @@ import { toast } from 'react-toastify';
 import NoData from '../../Shared/NoData/NoData';
 import ConfimationModal from '../../Shared/confimationModal/confimationModal';
 import LoadingElement from '../../Shared/LoadingElement/LoadingElement';
+import sadGirl from '../../../assets/sadGirl.svg'
+import { Pagination } from 'react-bootstrap';
 export default function RecipesList() {
 const navigate = useNavigate();
 const [recipes, setRecipes] = useState([]);
 const [deletingId, setDeletingId] = useState('');
 const [modalShow, setModalShow] = useState(false);
 const [selectedRecipe, setSelectedRecipe] = useState(null);
+const [active,seActive] = useState(1);
 
 const onDelete = () => {
   setDeletingId(selectedRecipe?.id);
@@ -26,9 +29,9 @@ const onDelete = () => {
   setDeletingId('');
 });
 }
-const getRecipes = async () => {
+const getRecipes = async (n) => {
     try {
-      const response = await API.get("/recipe");
+      const response = await API.get(`/recipe?pageSize=5&pageNumber=${n}`);
       setRecipes(response.data.data);
     } catch (error) {
       toast.error(error.response.data.message);
@@ -48,7 +51,7 @@ const getRecipes = async () => {
                 <p>Manage your recipes here</p>
               </div>
               <div className="col-md-4 text-end">
-                <div onClick={()=>navigate('../add-recipe')} className="d-inline-block">
+                <div onClick={()=>navigate('../add-recipe',)} className="d-inline-block">
                   <MainButton width="auto">
                     Add Recipe
                   </MainButton>
@@ -81,13 +84,13 @@ const getRecipes = async () => {
                           <th scope="row">{recipe.id}</th>
                           <td>{recipe.name}</td>
                           <td>
-                            <img width={50} src={`${BASE_URL}/${recipe.imagePath}`} alt="recipe image " />
+                            <img width={50} src={recipe.imagePath?`${BASE_URL}/${recipe.imagePath}`:sadGirl} alt="recipe image " />
                             
                             {/* {recipe.imagePath} */}
                             </td>
                           <td>{recipe.description}</td>
                           <td>{recipe.price}</td>
-                          <td>{recipe.category}</td>
+                          <td>{recipe.category.name}</td>
                           <td>{recipe.tag.name}</td>
                           <td className="text-center">
                             {deletingId === recipe.id  ? <LoadingElement color="text-danger"  /> : 
@@ -100,7 +103,7 @@ const getRecipes = async () => {
                             ></i>}
                             <i 
                               className="fa fa-edit text-warning cursor-pointer ms-3"
-                              onClick={() => {}}
+                              onClick={() => {navigate('../add-recipe',{state:{id:recipe.id}})}}
                             ></i>
                           </td>
                         </tr>
@@ -110,6 +113,10 @@ const getRecipes = async () => {
                   </div>
                   
                   )}
+                  <Pagination>
+                    {[1,2,3,4].map((n)=>(
+                    <Pagination.Item key={n} active={n===active} onClick={()=>{seActive(n);getRecipes(n)}}>{n}</Pagination.Item>))}
+                  </Pagination>
                   
                         <ConfimationModal
                         type={'recipe'}

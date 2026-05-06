@@ -8,11 +8,20 @@ export function UserContextProvider({children}){
     const [mood,setMood] = useState("light");
     const toggleMood = () => {
         setMood(mood === "light" ? "dark" : "light");
+        localStorage.setItem('mood',mood === "light" ? "dark" : "light")
     }
     const saveUser = () => {
         const token = localStorage.getItem("token");
-        const decodedToken =token? jwtDecode(token):null;
+        let decodedToken; 
+        try{
+        decodedToken = jwtDecode(token)
+        }
+        catch{
+            decodedToken = null
+        }
         setUser(decodedToken);
+        const mood = localStorage.getItem('mood');
+        setMood(mood);
     }
     const logout = () => {
         localStorage.removeItem('token');

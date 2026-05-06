@@ -7,6 +7,10 @@
   --light-accent-color: rgba(74, 163, 90, 0.3);
   --bg-sidebar: rgba(31, 38, 62, 1);
   --sidebar-text: whitesmoke;
+    --light-accent:rgba(173, 252, 168, 0.475);
+    /* var(--light-accent-color); */
+
+
 }
 .light {
   --main-foreground: rgba(73, 73, 73, 1);
@@ -16,14 +20,21 @@
   --accent-color: rgba(74, 163, 90, 1);
   --bg-sidebar: rgba(31, 38, 62, 1);
   --sidebar-text: whitesmoke;
+  /* --light-accent:rgba(240, 255, 239, 1); */
 }
 .dark {
   --main-foreground: rgba(255, 255, 255, 1);
   --ternary-foreground: rgba(255, 255, 255, 1);
   --ternary-background: rgba(73, 73, 73, 1);
   --main-background: rgba(0, 0, 0, 1);
-  --accent-color: rgba(74, 163, 90, 1);
-}
+  --accent-color: rgba(74, 163, 90, 1);  
+  /* --light-accent:rgba(240, 255, 239, 1); */
+
+    --bs-body-bg :var(--ternary-background);
+    --bs-body-color:var(--ternary-foreground);
+        --place-holder-color:red;
+
+  }
 .table {
   --bs-table-color: var(--main-foreground) !important;
   --bs-table-bg: var(--main-background) !important;
@@ -34,6 +45,10 @@
 input {
   caret-color: var(--accent-color);
   caret-shape: block;
+  color: var(--main-foreground);
+}
+input::placeholder{
+  color: var(--place-holder-color);
 }
 .error-span {
   font-size: 12px;
@@ -147,16 +162,30 @@ input {
 }
 .notfound{
   height:100vh;
-  width: 100%;
+  width: 100vw;
   background-image: url('./assets/bg-not-found.svg');
   background-size: contain;
   background-repeat:no-repeat;
   background-position: right;
   /* overflow: hidden; */
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+.bg-light-accent{
+  background-color: var(--light-accent);
 }
 .notfound .container-fluid{
-  flex-grow: 1;
+  flex-grow: 0;
+  flex-shrink: 1;
 }
 .notfound .row{
   height:stretch;
+}
+.notfound .img-container{
+  flex: 1;
+  min-height: 0;
+}
+.notfound .img-container img{
+  max-height: 100%;
 }
