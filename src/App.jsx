@@ -17,7 +17,7 @@ import AddRecipe from './Modules/Dashboard/AddRecipe/AddRecipe'
 import Home from './Modules/Dashboard/Home/Home'
 import ProtectedRoute from './Modules/Shared/Prtected/ProtectedRoute'
 import { ToastContainer } from 'react-toastify'
-import AuthorizedRoute from './Modules/Shared/Prtected/authorizedRoute'
+import AuthorizedRoute from './Modules/Shared/Prtected/AuthorizedRoute'
 import { ContextFounder } from './contexts/UserConrtrxt'
 
 function App() {
