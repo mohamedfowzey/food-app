@@ -37,6 +37,7 @@ export default function Categorieslist() {
   } = useForm();
   const searchForm = useForm();
   const onSearch = (data) => {
+    setActive(1)
     setNameToSearch(data?.name)
   };
   const onAdd = async (data) => {

@@ -26,6 +26,8 @@ export default function UsersList() {
   const [roleToSearch,setroleToSearch] = useState(0);
   const {register,handleSubmit} = useForm()
   const onSearch = (data)=>{
+        setActive(1)
+
     setEmailToSearch(data?.email)
     setNameToSearch(data?.userName)
     setCounteryToSearch(data?.countery)
