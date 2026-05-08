@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { API } from '../../../Constants/axiosClient';
 import { toast } from 'react-toastify';
-import onfirmationModal from '../../Shared/onfirmationModal/onfirmationModal';
+import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 import FavItemCard from '../../Shared/FavItemCard/FavItemCard.jsx';
 import { Pagination } from 'react-bootstrap';
 import { ContextFounder } from '../../../contexts/UserConrtrxt';
@@ -69,7 +69,7 @@ export default function FavoritesList() {
   }
  
   </div>
-  <onfirmationModal
+  <ConfirmationModal
   type={'item'}
   show={show}
   onHide={()=>setShow(false)}

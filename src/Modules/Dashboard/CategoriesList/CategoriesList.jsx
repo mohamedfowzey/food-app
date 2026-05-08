@@ -3,7 +3,7 @@ import Header from "../../Shared/Header/Header";
 import headerBoy from "../../../assets/headerBoy.svg";
 import { API } from "../../../Constants/axiosClient";
 import MainButton from "../../Shared/MainButton/MainButton";
-import onfirmationModal from "../../Shared/onfirmationModal/onfirmationModal";
+import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
 import CategoriesDataModal from "../../Shared/CategoriesDataModal/CategoriesDataModal";
 import { useForm } from "react-hook-form";
 import { Button, Modal, Pagination } from "react-bootstrap";
@@ -211,7 +211,7 @@ export default function Categorieslist() {
                   }}>{totalPages}</Pagination.Item>
                   </>:<></>}
           </Pagination>
-      <onfirmationModal
+      <ConfirmationModal
         type={"category"}
         show={modalShow}
         onHide={() => setModalShow(false)}
