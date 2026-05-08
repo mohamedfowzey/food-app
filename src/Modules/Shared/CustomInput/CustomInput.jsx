@@ -59,7 +59,7 @@ const validations = {
 export default function CustomInput({ type, register, errors, name,Watch = undefined }) {
   const [passVisible, setPassVisible] = useState(true);   
   return (
-    <div className="p-1 mb-3 bg-ternary">
+    <div className="p-1 mb-3 bg-ternary rounded-3">
       <div className="position-relative">
         <div className="position-absolute pe-1 icon-container">
           {IconsForInputs[name]}

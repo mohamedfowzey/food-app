@@ -2,10 +2,12 @@ import { Button, Modal } from "react-bootstrap";
 import MainButton from "../MainButton/MainButton";
 import { API } from "../../../Constants/axiosClient";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import { ContextFounder } from "../../../contexts/UserConrtrxt";
 
 export default function EditCategoryModal({ show, onhide, categoryId,refresh,register,handleSubmit,errors }) {
   
-
+  const {mood} = useContext(ContextFounder)
   const onsubmit = async (data) => {
         onhide()
     const toastId = toast.loading('editing')
@@ -22,6 +24,7 @@ export default function EditCategoryModal({ show, onhide, categoryId,refresh,reg
   return (
     <>
       <Modal
+      className={mood}
         show={show}
         onHide={onhide}
         size="lg"

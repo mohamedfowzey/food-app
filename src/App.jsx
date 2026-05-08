@@ -17,8 +17,9 @@ import AddRecipe from './Modules/Dashboard/AddRecipe/AddRecipe'
 import Home from './Modules/Dashboard/Home/Home'
 import ProtectedRoute from './Modules/Shared/Prtected/ProtectedRoute'
 import { ToastContainer } from 'react-toastify'
-import AuthorizedRoute from './Modules/Shared/Prtected/AuthorizedRoute'
 import { ContextFounder } from './contexts/UserConrtrxt'
+import OnlyUsersRoute from './Modules/Shared/Prtected/OnlyUsersRoute'
+import OnlyAdminsRoute from './Modules/Shared/Prtected/OnlyAdminsRoute'
 
 function App() {
   const routes = createBrowserRouter([
@@ -37,11 +38,10 @@ function App() {
       children:[
         {index:true, element:<Home/>},
         {path:'recipes', element:<RecipesList/>},
-        {path:'update-recipe', element:<UpdateRecipe/>},
-        {path:'add-recipe', element:<AddRecipe/>},
-        {path:'Favorites', element:<FavoritesList/>},
-        {path:'categories', element:<Categorieslist/>},
-        {path:'users', element:<AuthorizedRoute><UsersList/></AuthorizedRoute>},
+        {path:'add-recipe', element:<OnlyAdminsRoute><AddRecipe/></OnlyAdminsRoute>},
+        {path:'Favorites', element:<OnlyUsersRoute><FavoritesList/></OnlyUsersRoute>},
+        {path:'categories', element:<OnlyAdminsRoute><Categorieslist/></OnlyAdminsRoute>},
+        {path:'users', element:<OnlyAdminsRoute><UsersList/></OnlyAdminsRoute>},
       ]
     }
     

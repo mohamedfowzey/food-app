@@ -17,12 +17,21 @@ export default function AddRecipe() {
   const navigate = useNavigate();
   const [tags, setTags] = useState([]);
   const [categories, setCategories] = useState([]);
+  const removeDuplicateByName=(dataList)=>{
+    if(!dataList) return;
+    const hashMap = {};
+    dataList.forEach(item => {
+      hashMap[item.name] = item
+    });
+    return Object.values(hashMap);
+  }
   const getCategories = async (total = 5, times = 0) => {
     const response = await API.get(`/Category?pageSize=${total}&pageNumber=1`);
     total = response.data.totalNumberOfRecords;
     if (times === 0) {
       const finalResponse = await getCategories(total, 1);
-      setCategories(finalResponse.data.data);
+      const noneDuplicate = removeDuplicateByName(finalResponse?.data?.data)
+      setCategories(noneDuplicate);
     }
     return response;
   };
@@ -119,7 +128,7 @@ export default function AddRecipe() {
         <div className="row align-items-center">
           <div className="heading col-md-6">
             <h3>
-              Fill The <span className="text-accent">Recipes</span>!
+              Read All <span className="text-accent">Recipes</span>!
             </h3>
             <p className="text-ternary">
               you can now fill the meals easily using the table and form , click

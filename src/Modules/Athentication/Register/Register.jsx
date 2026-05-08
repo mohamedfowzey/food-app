@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CustomInput from '../../Shared/CustomInput/CustomInput';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -6,6 +6,7 @@ import { REGISTER } from '../../../Constants/END_POINTS';
 import { toast } from 'react-toastify';
 import {  useNavigate } from 'react-router-dom';
 import MainButton from '../../Shared/MainButton/MainButton';
+import LoadingElement from '../../Shared/LoadingElement/LoadingElement';
 const registerInput = [
   { name: 'userName', type: 'text' },
   { name: 'email', type: 'email' },
@@ -16,8 +17,10 @@ const registerInput = [
 ];
 export default function Register() {
   const navigate = useNavigate();
+  const [loading,setLoading] = useState(false)
   const { register, formState: { errors },handleSubmit, watch } = useForm();
   const onsubmit = async (data) => {
+    setLoading(true)
     try{
     const res = await axios.post(REGISTER,data)
     navigate('/verify-email',{state:{email:data.email}})
@@ -26,6 +29,7 @@ export default function Register() {
     catch(e){
       toast.error(e.response.data.message);
     }
+    setLoading(false)
   };
   return (
     <>
@@ -35,7 +39,7 @@ export default function Register() {
       </p>
     <form onSubmit={handleSubmit(onsubmit)}>
     {registerInput.map((input,index)=><CustomInput key={index} {...input} errors={errors} register={register} Watch={input.name === 'confirmPassword' ? watch : undefined}  />)}
-    <MainButton>Submit</MainButton>
+    {loading?<LoadingElement/>:<MainButton>Submit</MainButton>}
     </form>
 
     </>

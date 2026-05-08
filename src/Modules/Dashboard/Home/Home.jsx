@@ -19,7 +19,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="col-md-6 text-end">
-                <div className=" d-inline-block" onClick={()=>navigate('add-recipe')}><MainButton>Fill Recipes <i className='fa fa-arrow-right'></i></MainButton></div>
+                <div className=" d-inline-block" onClick={()=>navigate('recipes')}><MainButton>All Recipes <i className='fa fa-arrow-right'></i></MainButton></div>
               </div>
             </div>
           </div>

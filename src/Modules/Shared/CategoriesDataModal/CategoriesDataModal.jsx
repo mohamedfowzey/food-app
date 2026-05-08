@@ -1,5 +1,7 @@
 import { Button, Modal } from "react-bootstrap";
 import MainButton from "../MainButton/MainButton";
+import { useContext } from "react";
+import { ContextFounder } from "../../../contexts/UserConrtrxt";
 
 export default function CategoriesDataModal({
   show,
@@ -8,9 +10,11 @@ export default function CategoriesDataModal({
   errors,
   onsubmit,
 }) {
+  const {mood} = useContext(ContextFounder)
   return (
     <>
       <Modal
+      className={mood}
         show={show}
         onHide={onhide}
         size="lg"
@@ -36,9 +40,7 @@ export default function CategoriesDataModal({
             )}
             <div className="text-end mt-3 ">
               <MainButton width={"auto"}>Save</MainButton>
-              <Button className="ms-2" onClick={onhide}>
-                Close
-              </Button>
+              
             </div>
           </form>
         </Modal.Body>

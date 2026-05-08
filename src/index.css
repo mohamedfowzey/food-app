@@ -3,7 +3,7 @@
   --ternary-foreground: rgba(73, 73, 73, 0.6);
   --ternary-background: rgba(248, 249, 250, 1);
   --main-background: rgba(255, 255, 255, 1);
-  --accent-color: rgba(74, 163, 90, 1);
+  --accent-color:  #009146;
   --light-accent-color: rgba(74, 163, 90, 0.3);
   --bg-sidebar: rgba(31, 38, 62, 1);
   --sidebar-text: whitesmoke;
@@ -12,7 +12,7 @@
     --bs-pagination-active-bg: var(--accent-color) !important;
     --bs-pagination-active-border-color:var(--accent-color) !important;
     /* var(--light-accent-color); */
-
+--bs-dropdown-link-active-bg:var(--accent-color);
 
 }
 .light {
@@ -33,6 +33,9 @@
     --bs-pagination-hover-color:var(--accent-color) !important;
     --bs-pagination-focus-bg: var(--main-background) !important;
     --bs-pagination-focus-color:var(--accent-color) !important;
+        --my-btn-close-bg:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e") !important;
+--bs-dropdown-link-active-bg:var(--accent-color) !important;
+--bs-dropdown-link-hover-bg:var(--ternary-background) !important;
 
 
   /* --light-accent:rgba(240, 255, 239, 1); */
@@ -60,6 +63,14 @@
     --bs-pagination-hover-color:var(--accent-color) !important;
     --bs-pagination-focus-bg:black !important;
     --bs-pagination-focus-color:var(--accent-color) !important;
+    --my-btn-close-bg:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23999'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e") !important;
+  --bs-dropdown-link-hover-bg:transparent !important;
+  --bs-dropdown-link-active-bg:var(--accent-color) !important;
+--bs-dropdown-link-hover-bg:var(--main-background) !important;
+
+  }
+  .btn-close{
+    --bs-btn-close-bg:var(--my-btn-close-bg) !important;
   }
 .table {
   --bs-table-color: var(--main-foreground) !important;
@@ -228,6 +239,7 @@ visibility: hidden;
   visibility: hidden;
 }
 .custom-file-input{
+  display: block;
   border: 2px dashed var(--accent-color);
   background-color: var(--light-accent);
   padding: 12px;
@@ -240,4 +252,35 @@ visibility: hidden;
 .hide-scrollbar {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+.max-vh-100{
+  height: fit-content;;
+  max-height: 100vh;
+}
+  .always-collapsed-on-mobile{
+        transition: width, left, right, 300ms;
+    width: 250px;
+    min-width: 250px;
+  }
+@media screen and (max-width:576px) {
+  .always-collapsed-on-mobile{
+        width: 80px !important;
+    min-width: 80px !important;
+  }
+  .always-collapsed-on-mobile img{
+        width: 80px !important;
+height: 80px !important;    
+  }
+
+}
+
+input.form-control:-webkit-autofill,
+input.form-control:-webkit-autofill:hover, 
+input.form-control:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px var(--ternary-background) inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+  color: var(--main-foreground);
+}
+.row{
+  margin: 0 !important;
 }

@@ -11,7 +11,7 @@ export default function MasterLayout() {
     <>
       <div className={`d-flex ${mood} bg-main text-main`}>
         <SideBar />
-        <div className="main-content py-3 px-2 overflow-y-hidden">
+        <div className="main-content py-3 px-2 overflow-visible">
           <NavBar />
           <Outlet />
         </div>

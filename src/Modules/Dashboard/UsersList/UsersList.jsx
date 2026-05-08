@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import headerBoy from "../../../assets/headerBoy.svg";
 import Header from "../../Shared/Header/Header";
-import { API } from "../../../Constants/axiosClient";
+import { API, BASE_URL } from "../../../Constants/axiosClient";
 import { toast } from "react-toastify";
 import { Pagination } from "react-bootstrap";
 import NoData from "../../Shared/NoData/NoData";
 import LoadingElement from "../../Shared/LoadingElement/LoadingElement";
 import ConfimationModal from "../../Shared/confimationModal/confimationModal";
 import { ContextFounder } from "../../../contexts/UserConrtrxt";
+import { useForm } from "react-hook-form";
+import MainButton from "../../Shared/MainButton/MainButton";
+import sadGirl from "../../../assets/sadGirl.svg"
 export default function UsersList() {
   const [active, setActive] = useState(1);
   const [totalPages, setTotalPages] = useState();
@@ -17,16 +20,33 @@ export default function UsersList() {
   const [idToDelete, setIdToDelete] = useState("");
   const [deletingId, setDeletingId] = useState("");
   const [showModal, setShowMoadal] = useState(false);
+  const [emailToSearch,setEmailToSearch] = useState('');
+  const [nameToSearch,setNameToSearch] = useState('');
+  const [counteryToSearch,setCounteryToSearch] = useState('');
+  const [roleToSearch,setroleToSearch] = useState(0);
+  const {register,handleSubmit} = useForm()
+  const onSearch = (data)=>{
+    setEmailToSearch(data?.email)
+    setNameToSearch(data?.userName)
+    setCounteryToSearch(data?.countery)
+    setroleToSearch(data?.role)
+    
+  }
   const NumberToArray = (number) => {
     const result = [];
-    for (let i = number; i <= (number+4); i++) {
+    for (let i = number; i <= (totalPages<5?totalPages:(number+4)); i++) {
       result.push(i);
     }
     return result;
   };
-  const getUsers = async (n) => {
+  const getUsers = async () => {
+    let queryString = '';
+    queryString += emailToSearch ? `&email=${emailToSearch}`: '';
+    queryString += nameToSearch ? `&userName=${nameToSearch}`: '';
+    queryString += counteryToSearch ? `&country=${counteryToSearch}`: '';
+    queryString += +roleToSearch ? `&groups=${roleToSearch}`: '';
     try {
-      const response = await API.get(`/users?pageSize=5&pageNumber=${n}`);
+      const response = await API.get(`/users?pageSize=5&pageNumber=${active}${queryString}`);
 
       setUsers(response.data.data);
       setTotalPages(response.data.totalNumberOfPages);
@@ -48,10 +68,12 @@ export default function UsersList() {
     setDeletingId("");
   };
   useEffect(() => {
-    (() => {
+    (()=>{
+
       getUsers();
-    })();
-  }, []);
+    })()
+    
+  }, [active,emailToSearch,nameToSearch,counteryToSearch,roleToSearch]);
   return (
     <>
       <Header
@@ -63,17 +85,46 @@ export default function UsersList() {
         <h2>Users Table Details</h2>
         <p>you can check all details</p>
       </div>
+      <form className="d-flex gap-1 flex-nowrap " onSubmit={handleSubmit(onSearch)}>
+        <div className="mb-3">
+        <input {...register('userName')} type="text" className="form-control flex-grow-1" placeholder="userName" />
+          
+        </div>
+        <div className="mb-3">
+        <input {...register('email')} type="text" className="form-control" placeholder="email" />
+
+        </div>
+        <div className="mb-3">
+        <input {...register('countery')} type="text" className="form-control" placeholder="countery" />
+
+        </div>
+        <div className="mb-3">
+        <select {...register('role')} className="form-control " placeholder="userRole" >
+            <option value="0">role</option>
+            <option value="1">Admin</option>
+            <option value="2">User</option>
+        </select>
+
+        </div>
+        <div className="mb-3">
+
+        <MainButton><i className="fa fa-search"></i></MainButton>
+        </div>
+        
+      </form>
       {users.length === 0 ? (
         <NoData />
       ) : (
-        <div className="table-responsive">
+        <div className="table-responsive hide-scrollbar">
           <table className="table">
             <thead>
               <tr>
                 <th scope="col">#</th>
+                <th scope="col">image</th>
                 <th scope="col">user name</th>
                 <th scope="col">phone number</th>
                 <th scope="col">email</th>
+                <th scope="col">country</th>
                 <th scope="col">role</th>
 
                 <th scope="col">actions</th>
@@ -83,9 +134,13 @@ export default function UsersList() {
               {users.map((user) => (
                 <tr key={user.id}>
                   <th scope="row">{user.id}</th>
+                  <th >
+                    <img width={100} src={user?.imagePath?`${BASE_URL}/${user?.imagePath}`:sadGirl} alt="user image" />
+                  </th>
                   <td>{user.userName}</td>
                   <td>{user.phoneNumber}</td>
                   <td>{user.email}</td>
+                  <td>{user.country}</td>
                   <td>{user.group.name}</td>
                   <td className="text-center">
                     {deletingId === user.id ? (
@@ -99,10 +154,7 @@ export default function UsersList() {
                         }}
                       ></i>
                     )}
-                    <i
-                      className="fa fa-edit text-warning cursor-pointer ms-3"
-                      onClick={() => {}}
-                    ></i>
+                   
                   </td>
                 </tr>
               ))}
@@ -110,49 +162,36 @@ export default function UsersList() {
           </table>
         </div>
       )}
-      <Pagination className={`${mood} w-100 overflow-scroll`}>
+      <Pagination className={`${mood} w-100 overflow-scroll hide-scrollbar`}>
+        {totalPages>5?<>
       <Pagination.Prev onClick={()=>setPaginationView(p=>p>1?(p-5):p)}/>
-      <Pagination.Ellipsis />
+      <Pagination.Ellipsis /></>:<></>}
       {NumberToArray(paginationView).map((n) => (
           <Pagination.Item
             key={n}
             active={n === active}
             onClick={() => {
               setActive(n);
-              getUsers(n);
             }}
           >
             {n}
           </Pagination.Item>
         ))}
-
+      {totalPages>5?<>
       <Pagination.Ellipsis ></Pagination.Ellipsis>
       <Pagination.Next onClick={()=>setPaginationView(p=>(p+5)<totalPages?(p+5):p)}/>
       <Pagination.Item active={totalPages === active}
             onClick={() => {
               setActive(totalPages);
-              getUsers(totalPages);
             }}>{totalPages}</Pagination.Item>
+            </>:<></>}
     </Pagination>
-      {/* <Pagination className={`${mood}`}>
-        {NumberToArray(totalPages).map((n) => (
-          <Pagination.Item
-            key={n}
-            active={n === active}
-            onClick={() => {
-              setActive(n);
-              getUsers(n);
-            }}
-          >
-            {n}
-          </Pagination.Item>
-        ))}
-      </Pagination> */}
+     
       <ConfimationModal
         type={"user"}
         show={showModal}
         onHide={() => setShowMoadal(false)}
-        ondelete={onDelete}
+        action={onDelete}
       />
     </>
   );

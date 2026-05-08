@@ -1,10 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Menu, MenuItem, Sidebar } from "react-pro-sidebar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/3.png";
 import { ContextFounder } from "../../../contexts/UserConrtrxt";
 import OnlyAdmins from "../Prtected/OnlyAdmins";
-import ChangePasswordModal from "../ChangePasswordModal/ChangePasswordModal";
 import { Button, Modal } from "react-bootstrap";
 import MainButton from "../MainButton/MainButton";
 import LoadingElement from "../LoadingElement/LoadingElement";
@@ -13,8 +12,13 @@ import CustomInput from "../CustomInput/CustomInput";
 import lightLogo from "../../../assets/logo.png";
 import { API } from "../../../Constants/axiosClient";
 import { toast } from "react-toastify";
+import axios from "axios";
+import ConfimationModal from "../confimationModal/confimationModal";
+import OnlyUsers from "../Prtected/OnlyUsers";
 
 export default function SideBar() {
+  const navigate = useNavigate();
+  const {mood} = useContext(ContextFounder);
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -23,20 +27,24 @@ export default function SideBar() {
     watch,
   } = useForm();
   const [showChangePassword, setShowChangePassword] = useState(false);
+  const [showLogOut,setShowLogOut] = useState(false)
   const [collapsed, setCollapsed] = useState(false);
   const { logout } = useContext(ContextFounder);
   const onlogout = () => {
-    localStorage.removeItem("token");
     logout();
+    navigate('/')
   };
   const onsubmit = async (data) => {
+    const token = localStorage.getItem('token');    
     setLoading(true);
     try {
-      const res = await API.put("Users/ChangePassword", data);
+      const res = await axios.put("https://upskilling-egypt.com:3006/api/v1/Users/ChangePassword", data,{headers:{Authorization:`Bearer ${token}`}});
       toast.success(res?.data?.message || 'password changed')
       setLoading(false);
+      logout()
+      navigate('/')
     } catch (error) {
-      toast.error(error.response.data.message)
+      toast.error(error.response.data.message||'some wrong happend')
       setLoading(false);
     }
   };
@@ -44,7 +52,7 @@ export default function SideBar() {
     <>
       <Sidebar
         collapsed={collapsed}
-        className="rounded-top-right overflow-hidden bg-sidebar  text-sidebar border-none position-sticky top-0 vh-100 sidebar-container"
+        className="rounded-top-right always-collapsed-on-mobile overflow-hidden bg-sidebar  text-sidebar border-none position-sticky top-0 vh-100 sidebar-container"
       >
         <div
           className="w-100 text-center cursor-pointer"
@@ -76,6 +84,7 @@ export default function SideBar() {
               Users{" "}
             </MenuItem>
           </OnlyAdmins>
+          <OnlyAdmins>
           <MenuItem
             icon={<i className="fas fa-list"></i>}
             component={<Link to="/dashboard/categories" />}
@@ -83,6 +92,7 @@ export default function SideBar() {
             {" "}
             Categories{" "}
           </MenuItem>
+          </OnlyAdmins>
           <MenuItem
             icon={<i className="fas fa-utensils"></i>}
             component={<Link to="/dashboard/recipes" />}
@@ -90,6 +100,15 @@ export default function SideBar() {
             {" "}
             Recipes{" "}
           </MenuItem>
+          <OnlyUsers>
+          <MenuItem
+            icon={<i className="fas fa-heart"></i>}
+            component={<Link to="/dashboard/favorites" />}
+          >
+            {" "}
+            favorites{" "}
+          </MenuItem>
+          </OnlyUsers>
           <MenuItem
             onClick={() => {
               setShowChangePassword(true);
@@ -100,9 +119,8 @@ export default function SideBar() {
             change Password{" "}
           </MenuItem>
           <MenuItem
-            onClick={onlogout}
+            onClick={()=>setShowLogOut(true)}
             icon={<i className="fas fa-sign-out-alt"></i>}
-            component={<Link to="/login" />}
           >
             {" "}
             log out{" "}
@@ -110,6 +128,7 @@ export default function SideBar() {
         </Menu>
       </Sidebar>
       <Modal
+      className={mood}
         show={showChangePassword}
         onHide={() => setShowChangePassword(false)}
         centered
@@ -152,6 +171,12 @@ export default function SideBar() {
           </div>
         </Modal.Body>
       </Modal>
+      <ConfimationModal
+      show={showLogOut}
+      onHide={()=>setShowLogOut(false)}
+      action={onlogout}
+      type={'logout'}
+      />
     </>
   );
 }

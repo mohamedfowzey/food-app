@@ -20,7 +20,7 @@ setLoading(true)
       navigate('/login', {state:{email:state?.email,otp:data.Code}})
       toast.success('Email verified successfully')
     } catch (error) {
-      toast.error(error);
+      toast.error(error.response.data.message || 'something went wrong');
     }
           setLoading(false)
 

@@ -1,15 +1,16 @@
 import React, { useContext } from 'react'
-import { Button, Modal } from 'react-bootstrap'
-import sadGirl from '../../../assets/sadGirl.svg'
+import MainButton from '../MainButton/MainButton'
 import { ContextFounder } from '../../../contexts/UserConrtrxt'
+import { BASE_URL } from '../../../Constants/axiosClient'
+import { Modal } from 'react-bootstrap'
 
-export default function ConfimationModal({show,onHide,action,type}) {
+export default function UserRecipeDataModal(showModal,onhide,action,recipe) {
   const {mood} = useContext(ContextFounder)
   return (
     <Modal
     className={mood}
-      show={show}
-      onHide={onHide}
+      show={showModal}
+      onHide={onhide}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -17,18 +18,18 @@ export default function ConfimationModal({show,onHide,action,type}) {
       <Modal.Body className='text-center'>
         <span style={{width:32,height:32}}
          className="position-absolute top-0 end-0 rounded-circle border-2 border border-danger m-3 text-danger cursor-pointer fs-6 d-inline-flex align-items-center justify-content-center" >
-          <i onClick={onHide} className='fa fa-close text-danger'></i>
+          <i onClick={onhide} className='fa fa-close text-danger'></i>
         </span>
-        <img src={sadGirl} alt="Sad Girl" />
-        <h4 className='my-3'>{type === 'logout'? type : `Delete This ${type}`}?</h4>
+        <img src={`${BASE_URL}/${recipe?.imagePath}`} alt="Sad Girl" />
+        <h4 className='my-3'>recipe name</h4>
         <p>
-          are you sure you want to {type==='logout'?type:`delete this ${type}`} ? if you are sure just click on {type==='logout'?type:'delete'}
+          recipe description 
         </p>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="danger" onClick={()=>action()}>
-          {type==='logout'?type:'delete'}
-        </Button>
+        <div className='d-inline-block' onClick={()=>action(recipe?.id)}>
+          <MainButton>add to favorites</MainButton>
+        </div>
       </Modal.Footer>
     </Modal>
   )
