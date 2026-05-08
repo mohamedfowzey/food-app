@@ -1,4 +1,3 @@
-import React from 'react'
 import sadGirl from '../../../assets/sadGirl.svg'
 import { BASE_URL } from '../../../Constants/axiosClient'
 export default function FavItemCard({item,showModal,setId}) {

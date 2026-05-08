@@ -1,12 +1,12 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../Shared/Header/Header";
 import SideBar from "../Shared/SideBar/SideBar";
 import NavBar from "../Shared/NavBar/NavBar";
 import { ContextFounder } from "../../contexts/UserConrtrxt";
+import { useContext } from "react";
 
 export default function MasterLayout() {
-  const {mood} = React.useContext(ContextFounder);
+  const {mood} = useContext(ContextFounder);
   return (
     <>
       <div className={`d-flex ${mood} bg-main text-main`}>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import  { useContext } from "react";
 import notfound404 from "../../../assets/notfound-bg.svg";
 import logo from '../../../assets/logo.png'
 import MainButton from "../MainButton/MainButton";

@@ -13,7 +13,6 @@ import { Modal, Pagination } from "react-bootstrap";
 import { ContextFounder } from "../../../contexts/UserConrtrxt";
 import OnlyAdmins from "../../Shared/Prtected/OnlyAdmins";
 import OnlyUsers from "../../Shared/Prtected/OnlyUsers";
-import UserRecipeDataModal from "../../Shared/UserRecipeDataModal/UserRecipeDataModal";
 import { useForm } from "react-hook-form";
 export default function RecipesList() {
   const navigate = useNavigate();
@@ -290,12 +289,7 @@ export default function RecipesList() {
         onHide={() => setModalShow(false)}
         action={onDelete}
       />
-      {/* <UserRecipeDataModal
-        showModal={userModalShow}
-        onhide={() => setUserModalShow(false)}
-        action={addToFavorites}
-        recipe={selectedUserRecipe}
-      /> */}
+      
       <Modal
     className={mood}
       show={userModalShow}

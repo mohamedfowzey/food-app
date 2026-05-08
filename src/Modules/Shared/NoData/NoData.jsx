@@ -1,4 +1,3 @@
-import React from 'react'
 import sadGirl from '../../../assets/sadGirl.svg'
 
 export default function NoData() {

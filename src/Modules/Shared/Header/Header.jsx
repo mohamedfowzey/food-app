@@ -1,4 +1,3 @@
-import React from 'react'
 import { ContextFounder } from '../../../contexts/UserConrtrxt';
 
 export default function Header({title,description,image}) {

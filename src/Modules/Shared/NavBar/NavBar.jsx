@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import  { useContext } from "react";
 import { ContextFounder } from "../../../contexts/UserConrtrxt";
 import avatar from "../../../assets/userAvatar.svg";
 
