@@ -6,7 +6,7 @@ import MainButton from "../../Shared/MainButton/MainButton";
 import { API, BASE_URL } from "../../../Constants/axiosClient";
 import { toast } from "react-toastify";
 import NoData from "../../Shared/NoData/NoData";
-import ConfimationModal from "../../Shared/confimationModal/confimationModal";
+import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
 import LoadingElement from "../../Shared/LoadingElement/LoadingElement";
 import sadGirl from "../../../assets/sadGirl.svg";
 import { Modal, Pagination } from "react-bootstrap";
@@ -283,7 +283,7 @@ export default function RecipesList() {
                   </>:<></>}
           </Pagination>
 
-      <ConfimationModal
+      <ConfirmationModal
         type={"recipe"}
         show={modalShow}
         onHide={() => setModalShow(false)}

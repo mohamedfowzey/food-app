@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { API } from '../../../Constants/axiosClient';
 import { toast } from 'react-toastify';
-import ConfimationModal from '../../Shared/ConfimationModal/ConfimationModal.jsx';
-// import ConfimationModal from '../../Shared/ConfimationModal/ConfimationModal.jsx';
+import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal.jsx';
+// import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal.jsx';
 import FavItemCard from '../../Shared/FavItemCard/FavItemCard.jsx';
 import { Pagination } from 'react-bootstrap';
 import { ContextFounder } from '../../../contexts/UserConrtrxt';
@@ -70,7 +70,7 @@ export default function FavoritesList() {
   }
  
   </div>
-  <ConfimationModal
+  <ConfirmationModal
   type={'item'}
   show={show}
   onHide={()=>setShow(false)}
