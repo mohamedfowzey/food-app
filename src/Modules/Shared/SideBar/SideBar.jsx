@@ -13,7 +13,7 @@ import lightLogo from "../../../assets/logo.png";
 import { API } from "../../../Constants/axiosClient";
 import { toast } from "react-toastify";
 import axios from "axios";
-import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
+import ConfirmationModal from "../confirmationModal/confirmationModal";
 import OnlyUsers from "../Prtected/OnlyUsers";
 
 export default function SideBar() {

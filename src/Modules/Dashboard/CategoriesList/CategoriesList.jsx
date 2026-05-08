@@ -3,7 +3,7 @@ import Header from "../../Shared/Header/Header";
 import headerBoy from "../../../assets/headerBoy.svg";
 import { API } from "../../../Constants/axiosClient";
 import MainButton from "../../Shared/MainButton/MainButton";
-import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
+import ConfirmationModal from "../../Shared/confirmationModal/confirmationModal";
 import CategoriesDataModal from "../../Shared/CategoriesDataModal/CategoriesDataModal";
 import { useForm } from "react-hook-form";
 import { Button, Modal, Pagination } from "react-bootstrap";

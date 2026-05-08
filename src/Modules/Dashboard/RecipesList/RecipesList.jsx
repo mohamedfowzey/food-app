@@ -6,7 +6,7 @@ import MainButton from "../../Shared/MainButton/MainButton";
 import { API, BASE_URL } from "../../../Constants/axiosClient";
 import { toast } from "react-toastify";
 import NoData from "../../Shared/NoData/NoData";
-import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
+import ConfirmationModal from "../../Shared/confirmationModal/confirmationModal";
 import LoadingElement from "../../Shared/LoadingElement/LoadingElement";
 import sadGirl from "../../../assets/sadGirl.svg";
 import { Modal, Pagination } from "react-bootstrap";
