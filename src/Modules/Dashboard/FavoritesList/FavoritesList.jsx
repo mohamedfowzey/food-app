@@ -18,7 +18,7 @@ export default function FavoritesList() {
   const [idToDelete,setIdToDelete] = useState('');  
   const removeDuplicates = (list)=>{
     const duplicates = []
-    const hashMap = {}
+    const hashMap = {} 
     list.forEach(item=>{
       const recipeid = item?.recipe?.id;
       if(Object.hasOwn(hashMap,recipeid)){
