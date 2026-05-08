@@ -35,6 +35,8 @@ export default function RecipesList() {
   const [categoryToSearch,setCategoryToSearch] = useState(0);
   const {register,handleSubmit} = useForm();
   const onSearch = (data)=>{
+        setActive(1)
+
     setCategoryToSearch(data?.categoryId)
     setTagToSearch(data?.tagId)
     setNameToSearch(data?.name)

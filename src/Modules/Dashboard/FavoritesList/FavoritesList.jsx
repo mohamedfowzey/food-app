@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 import { useEffect, useState } from 'react';
+=======
+import React, { useContext, useEffect, useState } from 'react'
+import { API } from '../../../Constants/axiosClient';
+>>>>>>> 0841f2647a74bff92233e404548de6f5320adfb8
 import { toast } from 'react-toastify';
 import { API } from '../../../Constants/axiosClient';
 import ConfimationModal from '../../Shared/ConfimationModal/ConfimationModal';
 import FavItemCard from '../../Shared/FavItemCard/FavItemCard';
+import ConfimationModal from '../../Shared/ConfimationModal/ConfimationModal';
+import { Pagination } from 'react-bootstrap';
+import { ContextFounder } from '../../../contexts/UserConrtrxt';
 
 export default function FavoritesList() {
   const [favorites,setFavorites] = useState([]);
