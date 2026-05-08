@@ -70,7 +70,6 @@ export default function RecipesList() {
     }
   };
   const addToFavorites = async (id) => {
-    console.log(id);
     
     setUserModalShow(false);
     try {
@@ -148,14 +147,14 @@ export default function RecipesList() {
               <div className="mb-3">
               <select {...register('categoryId')} className="form-control " >
                   <option value="0">No Category</option>
-                  {categories.map((category)=><option value={category.id}>{category.name}</option>)}
+                  {categories.map((category)=><option key={category.id} value={category.id}>{category.name}</option>)}
               </select>
       
               </div>
               <div className="mb-3">
               <select {...register('tagId')} className="form-control " >
                   <option value="0">No Tag</option>
-                  {tags.map((tag)=><option value={tag.id}>{tag.name}</option>)}
+                  {tags.map((tag)=><option key={tag.id} value={tag.id}>{tag.name}</option>)}
               </select>
       
               </div>
