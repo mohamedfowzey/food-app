@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { API } from '../../../Constants/axiosClient';
 import { toast } from 'react-toastify';
-import ConfirmationModal from '../../Shared/confirmationModal/confirmationModal';
+import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 import FavItemCard from '../../Shared/FavItemCard/FavItemCard.jsx';
 import { Pagination } from 'react-bootstrap';
 import { ContextFounder } from '../../../contexts/UserConrtrxt';
