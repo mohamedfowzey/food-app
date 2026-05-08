@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { Pagination } from "react-bootstrap";
 import NoData from "../../Shared/NoData/NoData";
 import LoadingElement from "../../Shared/LoadingElement/LoadingElement";
-import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
+import onfirmationModal from "../../Shared/onfirmationModal/onfirmationModal";
 import { ContextFounder } from "../../../contexts/UserConrtrxt";
 import { useForm } from "react-hook-form";
 import MainButton from "../../Shared/MainButton/MainButton";
@@ -189,7 +189,7 @@ export default function UsersList() {
             </>:<></>}
     </Pagination>
      
-      <ConfirmationModal
+      <onfirmationModal
         type={"user"}
         show={showModal}
         onHide={() => setShowMoadal(false)}

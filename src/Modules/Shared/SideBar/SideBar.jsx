@@ -13,7 +13,7 @@ import lightLogo from "../../../assets/logo.png";
 import { API } from "../../../Constants/axiosClient";
 import { toast } from "react-toastify";
 import axios from "axios";
-import ConfirmationModal from "../confirmationModal/confirmationModal";
+import onfirmationModal from "../onfirmationModal/onfirmationModal";
 import OnlyUsers from "../Prtected/OnlyUsers";
 
 export default function SideBar() {
@@ -171,7 +171,7 @@ export default function SideBar() {
           </div>
         </Modal.Body>
       </Modal>
-      <ConfirmationModal
+      <onfirmationModal
       show={showLogOut}
       onHide={()=>setShowLogOut(false)}
       action={onlogout}

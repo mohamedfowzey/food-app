@@ -3,7 +3,7 @@ import { Button, Modal } from 'react-bootstrap'
 import sadGirl from '../../../assets/sadGirl.svg'
 import { ContextFounder } from '../../../contexts/UserConrtrxt'
 
-export default function ConfirmationModal({show,onHide,action,type}) {
+export default function onfirmationModal({show,onHide,action,type}) {
   const {mood} = useContext(ContextFounder)
   return (
     <Modal
