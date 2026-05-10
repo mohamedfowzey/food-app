@@ -8,29 +8,30 @@ import { toast } from "react-toastify";
 export default function AddRecipe() {
   const [recipeToEdit, setReciprToEdit] = useState(null);
   const { state } = useLocation();
+  const [fileImage, setFileImage] = useState(null);
   const {
     register,
     handleSubmit,
     formState: { errors },
-    setValue
+    setValue,
   } = useForm();
   const navigate = useNavigate();
   const [tags, setTags] = useState([]);
   const [categories, setCategories] = useState([]);
-  const removeDuplicateByName=(dataList)=>{
-    if(!dataList) return;
+  const removeDuplicateByName = (dataList) => {
+    if (!dataList) return;
     const hashMap = {};
-    dataList.forEach(item => {
-      hashMap[item.name] = item
+    dataList.forEach((item) => {
+      hashMap[item.name] = item;
     });
     return Object.values(hashMap);
-  }
+  };
   const getCategories = async (total = 5, times = 0) => {
     const response = await API.get(`/Category?pageSize=${total}&pageNumber=1`);
     total = response.data.totalNumberOfRecords;
     if (times === 0) {
       const finalResponse = await getCategories(total, 1);
-      const noneDuplicate = removeDuplicateByName(finalResponse?.data?.data)
+      const noneDuplicate = removeDuplicateByName(finalResponse?.data?.data);
       setCategories(noneDuplicate);
     }
     return response;
@@ -40,6 +41,8 @@ export default function AddRecipe() {
     setTags(response.data);
   };
   const onsubmit = async (data) => {
+    console.log(data);
+
     const toastId = toast.loading("uploading files...");
     const formData = new FormData();
     formData.append("name", data.name);
@@ -87,32 +90,37 @@ export default function AddRecipe() {
     try {
       const res = await API.get(`Recipe/${id}`);
       setReciprToEdit(res.data);
-      setValue('name',res?.data?.name)
-      setValue('price',res?.data?.price)
-      setValue('tagId',res?.data?.tag?.id)
-            setValue('categoriesIds',res?.data?.category[0]?.id)
-            setValue('description',res?.data?.description)
-            setValue('description',res?.data?.description)
-            const path = res?.data?.imagePath;
-      saveImage(path)
-  
+      setValue("name", res?.data?.name);
+      setValue("price", res?.data?.price);
+      setValue("tagId", res?.data?.tag?.id);
+      setValue("categoriesIds", res?.data?.category[0]?.id);
+      setValue("description", res?.data?.description);
+      setValue("description", res?.data?.description);
+      const path = res?.data?.imagePath;
+      saveImage(path);
     } catch (e) {
       toast.error(e.response.data.message);
     }
   };
   const saveImage = async (path) => {
-    if(!path){return}
+    if (!path) {
+      return;
+    }
     try {
       const response = await axios({
         url: `${BASE_URL}/${path}`,
         method: "GET",
         responseType: "blob", // Crucial: prevents data from being treated as text/JSON
       });
-      setValue('recipeImage',[response.data]);
+      setValue("recipeImage", [response.data]);
     } catch (e) {
-      toast(e?.response?.data?.message || 'can not load the image');
+      toast(e?.response?.data?.message || "can not load the image");
     }
   };
+  useEffect(() => {
+    console.log(fileImage);
+    setValue("recipeImage", [fileImage]);
+  }, [fileImage]);
   useEffect(() => {
     (() => {
       getCategories();
@@ -228,28 +236,45 @@ export default function AddRecipe() {
             ></textarea>
           </div>
           <div className="mb-3">
-            {recipeToEdit && (recipeToEdit.imagePath&&<div style={{width:100}} className='position-relative'>
-              <img
-                width={100}
-                src={`${BASE_URL}/${recipeToEdit?.imagePath}`}
-                alt="recipeimage"
-              />
-              <span className='position-absolute start-100 top-0 fs-5 cursor-pointer text-nowrap '><i className="fa fa-close text-danger" onClick={()=>{setValue('recipeImage',[undefined]);setReciprToEdit(p=>({...p,imagePath:''}))}}></i></span>
-            </div>)}
-            <label htmlFor="file-input" className="custom-file-input">
-              <h3><i className="fa fa-upload text-main"></i></h3>
-              <p>
-                drag & drop or <span className="text-accent cursor-pointer">choose an image</span>top upload
-              </p>
-            </label>
+            <div className="custom-file-input">
+              {recipeToEdit && recipeToEdit.imagePath ? (
+                <div style={{ width: 100 }} className="position-relative">
+                  <img
+                    width={100}
+                    src={`${BASE_URL}/${recipeToEdit?.imagePath}`}
+                    alt="recipeimage"
+                  />
+                  <span className="position-absolute start-100 top-0 fs-5 cursor-pointer text-nowrap ">
+                    <i
+                      className="fa fa-close text-danger"
+                      onClick={() => {
+                        setValue("recipeImage", [undefined]);
+                        setReciprToEdit((p) => ({ ...p, imagePath: "" }));
+                      }}
+                    ></i>
+                  </span>
+                </div>
+              ) : fileImage ? (
+                <img  src={URL.createObjectURL(fileImage)} />
+              ) : (
+                <>
+                  <h3>
+                    <label htmlFor="file-input" className="cursor-pointer">
+                      <i className="fa fa-upload text-main"></i>
+                    </label>
+                  </h3>
+                  <p>drag & drop or choose an image to upload</p>
+                </>
+              )}
+            </div>
             <input
               {...register("recipeImage")}
               type="file"
               accept="image/*"
-              id='file-input'
+              id="file-input"
               className="d-none"
               placeholder="recipeImage"
-
+              onChange={(e) => setFileImage(e.target.files[0])}
             />
           </div>
           <div className="text-end">

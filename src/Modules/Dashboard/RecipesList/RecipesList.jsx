@@ -67,7 +67,7 @@ export default function RecipesList() {
             setTotalPages(response.data.totalNumberOfPages);
 
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error?.response?.data?.message || 'can not get recipes');
     }
   };
   const addToFavorites = async (id) => {
