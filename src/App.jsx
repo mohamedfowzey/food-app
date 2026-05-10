@@ -38,6 +38,7 @@ function App() {
         {index:true, element:<Home/>},
         {path:'recipes', element:<RecipesList/>},
         {path:'add-recipe', element:<OnlyAdminsRoute><AddRecipe/></OnlyAdminsRoute>},
+        {path:'edit-recipe/:id', element:<OnlyAdminsRoute><AddRecipe/></OnlyAdminsRoute>},
         {path:'Favorites', element:<OnlyUsersRoute><FavoritesList/></OnlyUsersRoute>},
         {path:'categories', element:<OnlyAdminsRoute><Categorieslist/></OnlyAdminsRoute>},
         {path:'users', element:<OnlyAdminsRoute><UsersList/></OnlyAdminsRoute>},

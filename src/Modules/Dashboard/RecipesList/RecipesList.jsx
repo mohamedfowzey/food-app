@@ -220,9 +220,7 @@ export default function RecipesList() {
                       <i
                         className="fa fa-edit text-warning cursor-pointer ms-3"
                         onClick={() => {
-                          navigate("../add-recipe", {
-                            state: { id: recipe.id },
-                          });
+                          navigate(`../edit-recipe/${recipe.id}`);
                         }}
                       ></i>
                     </OnlyAdmins>

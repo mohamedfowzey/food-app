@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { API, BASE_URL } from "../../../Constants/axiosClient";
 import MainButton from "../../Shared/MainButton/MainButton";
-import { useLocation, useNavigate } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -9,7 +9,7 @@ import LoadingElement from "../../Shared/LoadingElement/LoadingElement";
 export default function AddRecipe() {
   const [loading, setLoading] = useState(false);
   const [recipeToEdit, setReciprToEdit] = useState(null);
-  const { state } = useLocation();
+  const { id } = useParams();
   const [fileImage, setFileImage] = useState(null);
   const [sending,setSending] = useState(false);
   const {
@@ -55,7 +55,7 @@ export default function AddRecipe() {
     formData.append("recipeImage", data?.recipeImage[0]);
 
     try {
-      if (!state?.id) {
+      if (!id) {
         const response = await axios.post(
           `${BASE_URL}/api/v1/Recipe`,
           formData,
@@ -70,7 +70,7 @@ export default function AddRecipe() {
         navigate("/dashboard/recipes")
       } else {
         const response = await axios.put(
-          `${BASE_URL}/api/v1/Recipe/${state.id}`,
+          `${BASE_URL}/api/v1/Recipe/${id}`,
           formData,
           {
             headers: {
@@ -107,7 +107,8 @@ export default function AddRecipe() {
       await saveImage(path);
       setLoading(false);
     } catch (e) {
-      toast.error(e.response.data.message);
+      toast.error(e.response.data.message || 'some thing went wrong');
+      navigate('/dashboard/recipes')
     }
   };
   const saveImage = async (path) => {
@@ -133,8 +134,8 @@ export default function AddRecipe() {
     (() => {
       getCategories();
       getTags();
-      if (state?.id) {
-        getRecipeById(state?.id);
+      if (id) {
+        getRecipeById(id);
       }
     })();
   }, []);
