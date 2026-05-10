@@ -191,11 +191,12 @@ input ::-webkit-input-placeholder{
   transition: all 0.3s ease;
 }
 .bg-header {
-  background-image: url("./assets/headerBG.svg");
-  background-size: auto;
+  background-image: url("./assets/headerBG.png");
+  background-size: cover;
   background-position: center;
   color: whitesmoke;
   height: fit-content;
+  
 }
 .main-content{
   min-width: 0;
