@@ -268,6 +268,7 @@ export default function AddRecipe() {
                         onClick={() => {
                           setValue("recipeImage", [undefined]);
                           setReciprToEdit((p) => ({ ...p, imagePath: "" }));
+                          setFileImage(null)
                         }}
                       ></i>
                     </span>
