@@ -96,6 +96,12 @@ export default function AddRecipe() {
       setLoading(true);
 
       const res = await API.get(`Recipe/${id}`);
+      
+      if(res?.data == null){
+        navigate('/dashboard/recipes');
+        toast.error('recipe not found')
+        return;
+       } 
       setReciprToEdit(res.data);
       setValue("name", res?.data?.name);
       setValue("price", res?.data?.price);
@@ -104,6 +110,8 @@ export default function AddRecipe() {
       setValue("description", res?.data?.description);
       setValue("description", res?.data?.description);
       const path = res?.data?.imagePath;
+       
+        
       await saveImage(path);
       setLoading(false);
     } catch (e) {
@@ -127,7 +135,6 @@ export default function AddRecipe() {
     }
   };
   useEffect(() => {
-    console.log(fileImage);
     setValue("recipeImage", [fileImage]);
   }, [fileImage]);
   useEffect(() => {
