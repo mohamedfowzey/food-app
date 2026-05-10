@@ -11,6 +11,7 @@ export default function AddRecipe() {
   const [recipeToEdit, setReciprToEdit] = useState(null);
   const { state } = useLocation();
   const [fileImage, setFileImage] = useState(null);
+  const [sending,setSending] = useState(false);
   const {
     register,
     handleSubmit,
@@ -43,8 +44,7 @@ export default function AddRecipe() {
     setTags(response.data);
   };
   const onsubmit = async (data) => {
-    console.log(data);
-
+    setSending(true)
     const toastId = toast.loading("uploading files...");
     const formData = new FormData();
     formData.append("name", data.name);
@@ -67,6 +67,7 @@ export default function AddRecipe() {
         );
         toast.done(toastId);
         toast.success(response.data.message || "files uploaded successfully");
+        navigate("/dashboard/recipes")
       } else {
         const response = await axios.put(
           `${BASE_URL}/api/v1/Recipe/${state.id}`,
@@ -79,6 +80,7 @@ export default function AddRecipe() {
         );
         toast.done(toastId);
         toast.success(response.data.message || "files updated successfully");
+        navigate("/dashboard/recipes")
       }
     } catch (error) {
       toast.done(toastId);
@@ -87,6 +89,7 @@ export default function AddRecipe() {
         1000,
       );
     }
+    finally{setSending(false);}
   };
   const getRecipeById = async (id) => {
     try {
@@ -296,8 +299,9 @@ export default function AddRecipe() {
             </div>
             <div className="text-end">
               <div className="d-inline-block">
+                {sending?<LoadingElement/>:
                 <MainButton>save</MainButton>
-              </div>
+                             }             </div>
             </div>
           </form>
         )}
