@@ -1,8 +1,9 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 
 export default function Authlayout() {
+  if(localStorage.getItem('token')) return <Navigate to={'/dashboard'}/>
   return (
     <>
     <div className="auth-bg">
